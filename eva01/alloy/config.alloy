@@ -1,0 +1,84 @@
+prometheus.remote_write "mimir" {
+  endpoint {
+    url = "http://192.168.0.237:9090/api/v1/write"
+  }
+  external_labels = {
+    host = "238-server",
+  }
+}
+
+// =============================================================================
+// CONTAINER METRICS (dex - Docker EXporter)
+// =============================================================================
+
+prometheus.scrape "dex" {
+  targets = [{
+    __address__ = "host.docker.internal:8386",
+  }]
+  forward_to      = [prometheus.remote_write.mimir.receiver]
+  job_name        = "dex"
+  scrape_interval = "15s"
+}
+
+// =============================================================================
+// LOGS COLLECTION
+// =============================================================================
+
+// Discover Docker containers
+discovery.docker "containers" {
+  host = "unix:///var/run/docker.sock"
+}
+
+// Relabel discovered targets to extract useful labels
+discovery.relabel "docker" {
+  targets = discovery.docker.containers.targets
+
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "container"
+  }
+
+  rule {
+    source_labels = ["__meta_docker_container_id"]
+    target_label  = "container_id"
+  }
+
+  rule {
+    source_labels = ["__meta_docker_container_image"]
+    target_label  = "image"
+  }
+
+  rule {
+    source_labels = ["__meta_docker_container_label_com_docker_compose_project"]
+    target_label  = "compose_project"
+  }
+
+  rule {
+    source_labels = ["__meta_docker_container_label_com_docker_compose_service"]
+    target_label  = "compose_service"
+  }
+}
+
+// Collect logs from Docker containers
+loki.source.docker "containers" {
+  host       = "unix:///var/run/docker.sock"
+  targets    = discovery.relabel.docker.output
+  forward_to = [loki.process.filter_old.receiver]
+}
+
+// Drop logs older than 1 hour to prevent Loki rejection errors
+loki.process "filter_old" {
+  forward_to = [loki.write.loki.receiver]
+
+  stage.drop {
+    older_than = "1h"
+  }
+}
+
+// Push logs to Loki
+loki.write "loki" {
+  endpoint {
+    url = "http://192.168.0.237:3100/loki/api/v1/push"
+  }
+}
