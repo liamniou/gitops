@@ -5,8 +5,17 @@ services:
     restart: unless-stopped
     ports:
       - "8005:8000"
-    env_file:
-      - /home/lestar/_volumes/best_wines/.env
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID}
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      MATCH_THRESHOLD: ${MATCH_THRESHOLD}
+      ADMIN_USERNAME: ${ADMIN_USERNAME}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      SEARCH_API_KEY: ${SEARCH_API_KEY}
+      GOOGLE_CUSTOM_SEARCH_API_KEY: ${GOOGLE_CUSTOM_SEARCH_API_KEY}
+      ZENSERP_API_KEY: ${ZENSERP_API_KEY}
     volumes:
       - /home/lestar/_volumes/best_wines/data:/app/data
       - /home/lestar/_volumes/best_wines/static_site:/app/static_site
