@@ -1,0 +1,52 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: socials-to-telegram-redis
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+
+  bot:
+    image: ghcr.io/liamniou/socials-to-telegram:latest
+    container_name: socials-to-telegram-bot
+    restart: unless-stopped
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+    volumes:
+      - /home/lestar/_volumes/socials-to-telegram/cookies.txt:/app/cookies.txt:ro
+    depends_on:
+      - redis
+
+  worker:
+    image: ghcr.io/liamniou/socials-to-telegram:latest
+    container_name: socials-to-telegram-worker
+    restart: unless-stopped
+    command: ["worker.py"]
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+    volumes:
+      - /home/lestar/_volumes/socials-to-telegram/cookies.txt:/app/cookies.txt:ro
+    depends_on:
+      - redis
+
+  metrics:
+    image: ghcr.io/liamniou/socials-to-telegram:latest
+    container_name: socials-to-telegram-metrics
+    restart: unless-stopped
+    command: ["metrics.py"]
+    ports:
+      - "9090:9090"
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      METRICS_PORT: "9090"
+    depends_on:
+      - redis
+
+volumes:
+  redis-data:
