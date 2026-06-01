@@ -1,0 +1,20 @@
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - SETTINGS_ENCRYPTION_KEY=${SETTINGS_ENCRYPTION_KEY}
+      - CLI_ARGS=
+      - DUPLICATI__WEBSERVICE_PASSWORD=${DUPLICATI__WEBSERVICE_PASSWORD}
+      - DISCORD_WEBHOOK_URL=YOUR_DISCORD_WEBHOOK_URL_HERE
+    ports:
+      - 8210:8200
+    volumes:
+      - /home/lestar/_volumes/duplicati/configs:/config
+      - /home/lestar/_volumes/duplicati/data:/backups
+      - /:/source
+      - /home/lestar/_volumes/duplicati/configs/scripts:/scripts:ro
