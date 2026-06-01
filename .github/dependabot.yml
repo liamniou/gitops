@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # Bump pinned image tags in any compose file under eva01/.
+  - package-ecosystem: "docker-compose"
+    directories:
+      - "/eva01/**"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "docker"
