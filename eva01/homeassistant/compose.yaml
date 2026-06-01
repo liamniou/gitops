@@ -1,0 +1,17 @@
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    restart: unless-stopped
+    network_mode: host
+    privileged: true
+    environment:
+      TZ: Europe/Stockholm
+    volumes:
+      - /home/lestar/_volumes/homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /home/lestar/_volumes/homeassistant/hacs_install.sh:/hacs_install.sh:ro
+    command:
+      - bash
+      - -c
+      - "/hacs_install.sh && python -m homeassistant --config /config"
