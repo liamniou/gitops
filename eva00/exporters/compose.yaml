@@ -1,0 +1,20 @@
+services:
+  bus-exporter:
+    image: ghcr.io/liamniou/bus-exporter:latest
+    container_name: bus-exporter
+    restart: unless-stopped
+    ports:
+      - "9101:9101"
+      - "9103:9103"
+    environment:
+      TZ: Europe/Stockholm
+
+  weather-exporter:
+    image: ghcr.io/liamniou/weather-exporter:latest
+    container_name: weather-exporter
+    restart: unless-stopped
+    ports:
+      - "9102:9102"
+      - "9104:9104"
+    environment:
+      TZ: Europe/Stockholm
