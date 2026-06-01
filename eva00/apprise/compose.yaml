@@ -1,0 +1,14 @@
+services:
+  apprise-api:
+    image: lscr.io/linuxserver/apprise-api:latest
+    container_name: apprise-api
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+      - APPRISE_ATTACH_SIZE=0 #optional
+    volumes:
+      - /home/lestar/_volumes/apprise/configs:/config
+    ports:
+      - 9999:8000
+    restart: unless-stopped
