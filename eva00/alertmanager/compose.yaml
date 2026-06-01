@@ -1,0 +1,13 @@
+services:
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    restart: unless-stopped
+    ports:
+      - 9093:9093
+    volumes:
+      - /home/lestar/_volumes/alertmanager/configs:/etc/alertmanager:ro
+      - /home/lestar/_volumes/alertmanager/data:/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--storage.path=/alertmanager'
