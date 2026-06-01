@@ -1,0 +1,12 @@
+services:
+  duplicati-exporter:
+    image: ghcr.io/liamniou/duplicati-exporter:latest
+    container_name: duplicati-exporter
+    restart: unless-stopped
+    ports:
+      - "9445:9445"
+    environment:
+      - DUPLICATI_URL=http://192.168.0.237:8210
+      - DUPLICATI_PASSWORD=${DUPLICATI_PASSWORD}
+      - EXPORTER_PORT=9445
+      - SCRAPE_TIMEOUT=30
