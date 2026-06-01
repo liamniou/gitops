@@ -1,0 +1,117 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: audiomuse-redis
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: audiomuse-db
+    environment:
+      POSTGRES_USER: audiomuse
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: audiomuse
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1GiB
+
+  audiomuse-ai-flask:
+    image: ghcr.io/neptunehub/audiomuse-ai:latest-nvidia
+    container_name: audiomuse-ai
+    ports:
+      - "8000:8000"
+    environment:
+      SERVICE_TYPE: "flask"
+      TZ: "Europe/Stockholm"
+      MEDIASERVER_TYPE: "navidrome"
+      NAVIDROME_URL: ${NAVIDROME_URL}
+      NAVIDROME_USER: ${NAVIDROME_USER}
+      NAVIDROME_PASSWORD: ${NAVIDROME_PASSWORD}
+      POSTGRES_USER: audiomuse
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: audiomuse
+      POSTGRES_HOST: "postgres"
+      POSTGRES_PORT: "5432"
+      REDIS_URL: "redis://redis:6379/0"
+      AI_MODEL_PROVIDER: "GEMINI"
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      GEMINI_MODEL_NAME: "gemini-2.0-flash"
+      CLAP_ENABLED: "true"
+      TEMP_DIR: "/app/temp_audio"
+      ORT_DISABLE_ALL_OPTIMIZATIONS: "0"
+      ORT_DISABLE_MEMORY_PATTERN_OPTIMIZATION: "0"
+    volumes:
+      - temp-audio-flask:/app/temp_audio
+      - /media/downloads/music:/music:ro
+    depends_on:
+      - redis
+      - postgres
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 2GiB
+          cpus: "2"
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [gpu]
+
+  audiomuse-ai-worker:
+    image: ghcr.io/neptunehub/audiomuse-ai:latest-nvidia
+    container_name: audiomuse-ai-worker-1
+    environment:
+      SERVICE_TYPE: "worker"
+      TZ: "Europe/Stockholm"
+      MEDIASERVER_TYPE: "navidrome"
+      NAVIDROME_URL: ${NAVIDROME_URL}
+      NAVIDROME_USER: ${NAVIDROME_USER}
+      NAVIDROME_PASSWORD: ${NAVIDROME_PASSWORD}
+      POSTGRES_USER: audiomuse
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: audiomuse
+      POSTGRES_HOST: "postgres"
+      POSTGRES_PORT: "5432"
+      REDIS_URL: "redis://redis:6379/0"
+      AI_MODEL_PROVIDER: "GEMINI"
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      GEMINI_MODEL_NAME: "gemini-2.0-flash"
+      CLAP_ENABLED: "true"
+      NVIDIA_VISIBLE_DEVICES: "0"
+      NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
+      USE_GPU_CLUSTERING: "true"
+      PER_SONG_MODEL_RELOAD: "false"
+      TEMP_DIR: "/app/temp_audio"
+      ORT_DISABLE_ALL_OPTIMIZATIONS: "0"
+      ORT_DISABLE_MEMORY_PATTERN_OPTIMIZATION: "0"
+      CLAP_MINI_BATCH_SIZE: "16"
+    volumes:
+      - temp-audio-worker-1:/app/temp_audio
+      - /media/downloads/music:/music:ro
+    depends_on:
+      - redis
+      - postgres
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 9GiB
+          cpus: "5"
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [gpu]
+
+volumes:
+  redis-data:
+  postgres-data:
+  temp-audio-flask:
+  temp-audio-worker-1:
