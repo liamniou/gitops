@@ -1,0 +1,9 @@
+services:
+  web:
+    image: ghcr.io/liamniou/eavesdrop.fm:latest
+    container_name: eavesdrop-web
+    restart: unless-stopped
+    ports:
+      - "3002:3000"
+    environment:
+      NODE_ENV: production
