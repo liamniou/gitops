@@ -21,6 +21,36 @@ prometheus.scrape "dex" {
 }
 
 // =============================================================================
+// HOME ASSISTANT METRICS
+// =============================================================================
+
+prometheus.scrape "homeassistant" {
+  targets = [{
+    __address__ = "192.168.0.238:8123",
+    app         = "homeassistant",
+  }]
+  forward_to        = [prometheus.remote_write.mimir.receiver]
+  job_name          = "homeassistant"
+  metrics_path      = "/api/prometheus"
+  scrape_interval   = "15s"
+  bearer_token_file = "/etc/alloy/ha_token"
+}
+
+// =============================================================================
+// SOCIALS-TO-TELEGRAM METRICS
+// =============================================================================
+
+prometheus.scrape "socials_to_telegram" {
+  targets = [{
+    __address__ = "192.168.0.238:9090",
+    app         = "socials-to-telegram",
+  }]
+  forward_to      = [prometheus.remote_write.mimir.receiver]
+  job_name        = "socials-to-telegram"
+  scrape_interval = "15s"
+}
+
+// =============================================================================
 // LOGS COLLECTION
 // =============================================================================
 
