@@ -1,0 +1,38 @@
+services:
+  rallly_db:
+    image: postgres:14
+    container_name: rallly-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rallly
+    volumes:
+      - /home/lestar/_volumes/rallly/db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  rallly:
+    image: lukevella/rallly:latest
+    container_name: rallly
+    restart: unless-stopped
+    depends_on:
+      rallly_db:
+        condition: service_healthy
+    ports:
+      - "3032:3000"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@rallly_db/rallly
+      DIRECT_DATABASE_URL: postgres://postgres:postgres@rallly_db/rallly
+      SECRET_PASSWORD: ${SECRET_PASSWORD}
+      NEXT_PUBLIC_BASE_URL: https://poll.tokyo3.eu
+      NEXTAUTH_URL: https://poll.tokyo3.eu
+      SUPPORT_EMAIL: poll@tokyo3.eu
+      NEXT_PUBLIC_SELF_HOSTED: "false"
+      SMTP_HOST: in-v3.mailjet.com
+      SMTP_PORT: "587"
+      SMTP_SECURE: "false"
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PWD: ${SMTP_PWD}
