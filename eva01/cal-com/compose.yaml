@@ -18,7 +18,7 @@ services:
       retries: 10
 
   calcom:
-    image: calcom/cal.com:v5.9.14
+    image: calcom/cal.com:v6.2.0
     container_name: cal-com
     restart: unless-stopped
     ports:
