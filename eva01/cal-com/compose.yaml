@@ -1,0 +1,47 @@
+services:
+  db:
+    image: postgres:14
+    container_name: cal-com-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: cal
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: calcom
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - calnet
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cal -d calcom"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  calcom:
+    image: calcom/cal.com:v5.9.6
+    container_name: cal-com
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://cal:${POSTGRES_PASSWORD}@db:5432/calcom
+      DATABASE_DIRECT_URL: postgresql://cal:${POSTGRES_PASSWORD}@db:5432/calcom
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      NEXT_PUBLIC_WEBAPP_URL: https://cal.unit02.eu
+      CALENDSO_ENCRYPTION_KEY: ${CALENDSO_ENCRYPTION_KEY}
+      STRIPE_PRIVATE_KEY: ${STRIPE_PRIVATE_KEY}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+      GOOGLE_LOGIN_ENABLED: "false"
+      GOOGLE_API_CREDENTIALS: ${GOOGLE_API_CREDENTIALS}
+      UNKEY_ROOT_KEY: ${UNKEY_ROOT_KEY}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - calnet
+
+volumes:
+  pgdata:
+
+networks:
+  calnet:
