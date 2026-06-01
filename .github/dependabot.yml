@@ -1,15 +1,167 @@
 version: 2
 updates:
-  # Bump pinned image tags in any compose file under eva01/.
   - package-ecosystem: "docker-compose"
-    directories:
-      - "/eva01/**"
+    directory: "/eva01/alloy/"
     schedule:
       interval: "weekly"
-    open-pull-requests-limit: 10
+      day: "monday"
+    open-pull-requests-limit: 5
     commit-message:
-      prefix: "deps"
-      include: "scope"
+      prefix: "deps(alloy)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/bazarr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(bazarr)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/best_wines/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(best_wines)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/cal-com/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(cal-com)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/cloudflare/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(cloudflare)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/convertx/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(convertx)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/dex-exporter/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(dex-exporter)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/exporters/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(exporters)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/ghost/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(ghost)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/hawser/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(hawser)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/homeassistant/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(homeassistant)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/mqtt/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(mqtt)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/rallly/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(rallly)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/socials-to-telegram/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(socials-to-telegram)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva01/zigbee2mqtt/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(zigbee2mqtt)"
     labels:
       - "dependencies"
       - "docker"

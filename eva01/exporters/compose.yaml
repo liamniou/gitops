@@ -1,6 +1,6 @@
 services:
   node-exporter:
-    image: prom/node-exporter:latest
+    image: prom/node-exporter:v1.11.1
     container_name: node-exporter
     restart: unless-stopped
     volumes:
@@ -16,7 +16,7 @@ services:
       - "9100:9100"
 
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor
+    image: gcr.io/cadvisor/cadvisor:v0.55.1
     container_name: cadvisor
     restart: unless-stopped
     volumes:
@@ -31,7 +31,7 @@ services:
       - "--docker_only=true"
 
   missing-container-metrics:
-    image: ghcr.io/liamniou/missing-container-metrics:latest
+    image: ghcr.io/liamniou/missing-container-metrics:latest@sha256:6342a7aa2fc24896de2034c12c2ef525fb183448283ba34c9a9e4fd7c655ffb5
     container_name: missing-container-metrics
     restart: unless-stopped
     ports:

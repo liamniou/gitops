@@ -1,6 +1,6 @@
 services:
   redis:
-    image: redis:7-alpine
+    image: redis:7.4.9-alpine
     container_name: socials-to-telegram-redis
     restart: unless-stopped
     volumes:
@@ -8,7 +8,7 @@ services:
     command: redis-server --appendonly yes
 
   bot:
-    image: ghcr.io/liamniou/socials-to-telegram:latest
+    image: ghcr.io/liamniou/socials-to-telegram:latest@sha256:77e20eb566892fae97a68fb1679b2ae6fb5064e152a1f3a3ab6ba8041a63ccaa
     container_name: socials-to-telegram-bot
     restart: unless-stopped
     environment:
@@ -21,7 +21,7 @@ services:
       - redis
 
   worker:
-    image: ghcr.io/liamniou/socials-to-telegram:latest
+    image: ghcr.io/liamniou/socials-to-telegram:latest@sha256:77e20eb566892fae97a68fb1679b2ae6fb5064e152a1f3a3ab6ba8041a63ccaa
     container_name: socials-to-telegram-worker
     restart: unless-stopped
     command: ["worker.py"]
@@ -35,7 +35,7 @@ services:
       - redis
 
   metrics:
-    image: ghcr.io/liamniou/socials-to-telegram:latest
+    image: ghcr.io/liamniou/socials-to-telegram:latest@sha256:77e20eb566892fae97a68fb1679b2ae6fb5064e152a1f3a3ab6ba8041a63ccaa
     container_name: socials-to-telegram-metrics
     restart: unless-stopped
     command: ["metrics.py"]

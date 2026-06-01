@@ -1,6 +1,6 @@
 services:
   rallly_db:
-    image: postgres:14
+    image: postgres:14.23
     container_name: rallly-db
     restart: unless-stopped
     environment:
@@ -15,7 +15,7 @@ services:
       retries: 10
 
   rallly:
-    image: lukevella/rallly:latest
+    image: lukevella/rallly:4.10.2
     container_name: rallly
     restart: unless-stopped
     depends_on:
