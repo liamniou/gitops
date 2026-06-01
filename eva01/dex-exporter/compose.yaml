@@ -1,0 +1,9 @@
+services:
+  dex:
+    image: spx01/dex:latest
+    container_name: dex
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - "8386:8080"
