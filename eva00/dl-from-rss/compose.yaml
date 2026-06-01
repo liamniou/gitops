@@ -1,0 +1,44 @@
+services:
+  bot:
+    image: ghcr.io/liamniou/dl-yt-from-rss-bot-bot:latest
+    container_name: dl-from-rss-bot
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - PYTHONUNBUFFERED=1
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - METUBE_URL=http://localhost:8085
+    volumes:
+      - /home/lestar/_volumes/dl-from-rss/db:/home/app/db
+
+  checker:
+    image: ghcr.io/liamniou/dl-yt-from-rss-bot-checker:latest
+    container_name: dl-from-rss-checker
+    restart: unless-stopped
+    network_mode: host
+    command: tail -f /dev/null
+    environment:
+      - RSS_FEED=http://192.168.0.237:1200/youtube/subscriptions
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+      - MAX_AGE_DAYS=2
+    volumes:
+      - /home/lestar/_volumes/dl-from-rss/db:/home/app/db
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.dl-rss-checker-08.schedule: "0 8 * * *"
+      ofelia.job-exec.dl-rss-checker-08.only-on-success: "false"
+      ofelia.job-exec.dl-rss-checker-08.command: "python main.py"
+      ofelia.job-exec.dl-rss-checker-16.schedule: "0 16 * * *"
+      ofelia.job-exec.dl-rss-checker-16.only-on-success: "false"
+      ofelia.job-exec.dl-rss-checker-16.command: "python main.py"
+
+  prefetch:
+    image: ghcr.io/liamniou/dl-yt-from-rss-bot-prefetch:latest
+    container_name: dl-from-rss-prefetch
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - PREFETCH_INTERVAL=3600
+    volumes:
+      - /home/lestar/_volumes/dl-from-rss/db:/home/app/db
