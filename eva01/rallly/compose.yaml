@@ -1,6 +1,6 @@
 services:
   rallly_db:
-    image: postgres:14.23
+    image: postgres:18.4
     container_name: rallly-db
     restart: unless-stopped
     environment:
