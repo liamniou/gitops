@@ -1,9 +1,10 @@
-# Root deployment config for host eva00 (selected via POLL_CONFIG target: eva00).
-# Each subdirectory of eva00/ that contains a compose file becomes its own deployment.
-working_dir: eva00/
+name: eva00
+reference: main
+working_dir: eva00
 auto_discovery:
   enabled: true
   depth: 1
   delete: true
   remove_volumes: false
   remove_images: true
+
