@@ -1,0 +1,13 @@
+services:
+  autobrr:
+    image: ghcr.io/autobrr/autobrr:latest
+    container_name: autobrr
+    profiles: ["disabled"]  # remove to enable
+    environment:
+      - TZ=Europe/Stockholm
+    ports:
+      - 7474:7474
+    restart: unless-stopped
+    volumes:
+      - /home/lestar/_volumes/autobrr/configs:/config
+      - /home/lestar/_volumes/media-box/data:/tmp
