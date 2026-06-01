@@ -1,0 +1,16 @@
+services:
+  hawser:
+    image: ghcr.io/finsys/hawser:latest
+    container_name: hawser
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Stockholm
+    ports:
+      - "2376:2376"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes/doco-cd_data/_data/github.com/liamniou/gitops/eva01:/stacks:ro
+      - data:/data/stacks
+
+volumes:
+  data:
