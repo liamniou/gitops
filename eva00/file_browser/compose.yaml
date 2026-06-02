@@ -1,0 +1,10 @@
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    restart: unless-stopped
+    ports:
+      - 9280:80
+    volumes:
+      - /media:/srv
+      - /home/lestar/_volumes/filebrowser/data:/database
