@@ -1,0 +1,30 @@
+services:
+  homeflix-exporter:
+    image: ghcr.io/liamniou/homeflix-exporter:latest
+    container_name: homeflix-exporter
+    restart: unless-stopped
+    user: "1000:1000"
+    network_mode: host
+    environment:
+      - PLEX_DB_PATH=/data/com.plexapp.plugins.library.db
+      - PLEX_PREFS_PATH=/config/Preferences.xml
+      - PLEX_URL=http://localhost:32400
+      - EXPECTED_CUSTOM_URL=https://plex.tokyo3.eu
+      - PLEX_EXTERNAL_URL=https://plex.tokyo3.eu
+      - PLEX_TOKEN=${PLEX_TOKEN}
+      - SCRAPE_INTERVAL_SECONDS=120
+      - EXPORTER_PORT=9108
+      - LOG_LEVEL=INFO
+      - PATH_MAPPINGS=/media:/media
+      - SONARR_INSTANCES=${SONARR_INSTANCES}
+      - RADARR_INSTANCES=${RADARR_INSTANCES}
+    volumes:
+      - /home/lestar/_volumes/plex/config/Library/Application Support/Plex Media Server/Plug-in Support/Databases:/data:ro
+      - /home/lestar/_volumes/plex/config/Library/Application Support/Plex Media Server:/config:ro
+      - /media:/media:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9108/metrics')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
