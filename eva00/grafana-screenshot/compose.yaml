@@ -1,0 +1,16 @@
+services:
+  grafana-screenshot:
+    image: ghcr.io/liamniou/grafana-screenshot:latest
+    container_name: grafana-screenshot
+    restart: unless-stopped
+    ports:
+      - "8087:8080"
+    environment:
+      GRAFANA_URL: "http://192.168.0.237:3000/d/bus-weather-dashboard/bus-departures-and-weather?orgId=1&from=now-6h&to=now%2B12h&timezone=browser&kiosk"
+      SCREENSHOT_INTERVAL: "15"
+      WIDTH: "800"
+      HEIGHT: "480"
+      HTTP_PORT: "8080"
+    shm_size: 128m
+    mem_limit: 768m
+    memswap_limit: 768m
