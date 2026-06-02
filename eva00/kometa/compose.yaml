@@ -13,4 +13,4 @@ services:
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.kometa-sync.schedule: "@every 6h"
-      ofelia.job-exec.kometa-sync.command: "python3 kometa.py"
+      ofelia.job-exec.kometa-sync.command: "python3 kometa.py --run"
