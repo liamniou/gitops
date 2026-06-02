@@ -1,6 +1,6 @@
 services:
   kometa:
-    image: kometateam/kometa
+    image: kometateam/kometa:nightly
     container_name: kometa
     command: tail -f /dev/null
     restart: unless-stopped
