@@ -1,0 +1,16 @@
+services:
+  kometa:
+    image: kometateam/kometa
+    container_name: kometa
+    command: tail -f /dev/null
+    restart: unless-stopped
+    environment:
+      - KOMETA_LOG_LEVEL=debug
+      - TZ=UTC
+    volumes:
+      - /home/lestar/_volumes/kometa/config:/config
+      - /home/lestar/_volumes/kometa/data:/data
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.kometa-sync.schedule: "@every 6h"
+      ofelia.job-exec.kometa-sync.command: "python3 kometa.py"
