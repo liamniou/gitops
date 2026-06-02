@@ -1,0 +1,8 @@
+services:
+  komoot-to-gpx-bot:
+    image: ghcr.io/liamniou/komoot-to-gpx-bot:latest
+    container_name: komoot-to-gpx-bot
+    restart: unless-stopped
+    environment:
+      ALLOWED_CHAT_ID: ${ALLOWED_CHAT_ID:?}
+      BOT_TOKEN: ${BOT_TOKEN:?}
