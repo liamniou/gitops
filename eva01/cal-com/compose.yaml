@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:14.23
+    image: postgres:17.10
     container_name: cal-com-db
     restart: unless-stopped
     environment:
