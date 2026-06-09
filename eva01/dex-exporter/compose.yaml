@@ -1,6 +1,6 @@
 services:
   dex:
-    image: spx01/dex:0.0.71
+    image: spx01/dex:0.0.72
     container_name: dex
     restart: unless-stopped
     volumes:
