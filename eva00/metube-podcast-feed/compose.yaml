@@ -1,0 +1,19 @@
+services:
+  metube-podcast-feed:
+    image: ghcr.io/liamniou/metube-podcast-feed:latest
+    container_name: metube-podcast-feed
+    restart: unless-stopped
+    ports:
+      - "8086:8000"
+    volumes:
+      - /home/lestar/_volumes/metube/data:/downloads:ro
+    environment:
+      - METUBE_URL=https://metube.eva00.eu
+      - BASE_URL=https://rss.eva00.eu
+      - PODCAST_TITLE=MeTube Downloads
+      - PODCAST_DESCRIPTION=Audio and video downloads from MeTube
+      - PODCAST_AUTHOR=MeTube
+      - PODCAST_EMAIL=lestarby@gmail.com
+      - PODCAST_LANGUAGE=en
+      - PODCAST_CATEGORY=Miscellaneous
+      - PODCAST_IMAGE=https://i.imgur.com/rNvTM2b.jpeg
