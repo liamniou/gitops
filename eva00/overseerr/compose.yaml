@@ -1,0 +1,12 @@
+services:
+  overseerr:
+    image: ghcr.io/liamniou/overseerr:latest
+    container_name: overseerr
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Stockholm
+      - PORT=5055
+    ports:
+      - "5055:5055"
+    volumes:
+      - /home/lestar/_volumes/overseerr/configs:/app/config
