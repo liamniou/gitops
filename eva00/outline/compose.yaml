@@ -1,0 +1,60 @@
+services:
+  outline:
+    image: docker.getoutline.com/outlinewiki/outline:latest
+    container_name: outline
+    restart: unless-stopped
+    ports:
+      - "3900:3000"
+    depends_on:
+      outline_postgres:
+        condition: service_healthy
+      outline_redis:
+        condition: service_healthy
+    volumes:
+      - /home/lestar/_volumes/outline/data:/var/lib/outline/data
+    environment:
+      - NODE_ENV=production
+      - SECRET_KEY=${SECRET_KEY}
+      - UTILS_SECRET=${UTILS_SECRET}
+      - DATABASE_URL=postgres://outline:${POSTGRES_PASSWORD}@outline_postgres:5432/outline
+      - PGSSLMODE=disable
+      - REDIS_URL=redis://outline_redis:6379
+      - URL=https://outline.tokyo3.eu
+      - PORT=3000
+      - FILE_STORAGE=local
+      - FILE_STORAGE_LOCAL_ROOT_DIR=/var/lib/outline/data
+      - FILE_STORAGE_UPLOAD_MAX_SIZE=26214400
+      - SMTP_HOST=in-v3.mailjet.com
+      - SMTP_PORT=587
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_FROM_EMAIL=outline@tokyo3.eu
+      - SMTP_SECURE=false
+
+  outline_postgres:
+    image: postgres:16-alpine
+    container_name: outline_postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=outline
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=outline
+    volumes:
+      - /home/lestar/_volumes/outline/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "outline", "-d", "outline"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  outline_redis:
+    image: redis:7-alpine
+    container_name: outline_redis
+    restart: unless-stopped
+    volumes:
+      - /home/lestar/_volumes/outline/redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
