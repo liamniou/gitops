@@ -1,0 +1,14 @@
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    ports:
+      - "4533:4533"
+    environment:
+      - ND_SCANSCHEDULE=1h
+      - ND_LOGLEVEL=info
+      - ND_AUTOIMPORTPLAYLISTS=false
+    volumes:
+      - /home/lestar/_volumes/navidrome/data:/data
+      - /media/downloads/music:/music:ro
+    restart: unless-stopped
