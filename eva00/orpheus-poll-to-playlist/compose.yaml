@@ -1,0 +1,45 @@
+services:
+  orpheus-poll:
+    image: ghcr.io/liamniou/orpheus-poll-to-playlist:latest
+    container_name: orpheus-poll-to-playlist
+    restart: unless-stopped
+    ports:
+      - "7575:7575"
+    volumes:
+      - /home/lestar/_volumes/orpheus-poll-to-playlist/data:/app/data
+      - /home/lestar/_volumes/orpheus-poll-to-playlist/downloads:/app/downloads
+    environment:
+      - ORPHEUS_API_KEY=${ORPHEUS_API_KEY}
+      - ORPHEUS_SESSION_COOKIE=${ORPHEUS_SESSION_COOKIE}
+      - CACHE_TTL_MINUTES=30
+      - QBIT_URL=http://192.168.0.237:9088
+      - QBIT_USER=admin
+      - QBIT_PASSWORD=${QBIT_PASSWORD}
+      - QBIT_CATEGORY=ops-aotm
+      - NAVIDROME_URL=https://music.tokyo3.eu
+      - NAVIDROME_USER=Lestar
+      - NAVIDROME_PASSWORD=${NAVIDROME_PASSWORD}
+      - NAVIDROME_MUSIC_FOLDER=/music
+      - NAVIDROME_LIBRARY_ID=1
+      - LOG_LEVEL=INFO
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:7575/api/health').raise_for_status()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  poll-notifier:
+    image: ghcr.io/liamniou/orpheus-poll-to-playlist-notifier:latest
+    container_name: orpheus-poll-notifier
+    restart: unless-stopped
+    volumes:
+      - /home/lestar/_volumes/orpheus-poll-to-playlist/data:/app/data
+    environment:
+      - ORPHEUS_SESSION_COOKIE=${ORPHEUS_SESSION_COOKIE}
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
+      - CRON_SCHEDULE=0 9 * * *
+      - RUN_ON_START=true
+    depends_on:
+      orpheus-poll:
+        condition: service_healthy
