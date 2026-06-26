@@ -27,7 +27,7 @@ services:
         condition: service_healthy
 
   ghost_db:
-    mem_limit: 192m # peak 7d +20%
+    mem_limit: 1024m # MySQL 8.4 floor (startup/crash-recovery spikes)
     image: mysql:8.4.9
     container_name: ghost_db
     restart: unless-stopped

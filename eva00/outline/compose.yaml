@@ -33,7 +33,7 @@ services:
       - SMTP_SECURE=false
 
   outline_postgres:
-    mem_limit: 64m
+    mem_limit: 256m # postgres floor
     image: postgres:16-alpine
     container_name: outline_postgres
     restart: unless-stopped

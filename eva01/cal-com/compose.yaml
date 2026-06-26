@@ -1,6 +1,6 @@
 services:
   db:
-    mem_limit: 128m # peak 7d +20%
+    mem_limit: 256m # postgres floor
     image: postgres:14.23
     container_name: cal-com-db
     restart: unless-stopped
