@@ -1,7 +1,7 @@
 services:
   rallly_db:
     mem_limit: 256m # postgres floor
-    image: postgres:14.23
+    image: postgres:16.14
     container_name: rallly-db
     restart: unless-stopped
     environment:
