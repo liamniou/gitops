@@ -1,6 +1,6 @@
 services:
   dockhand:
-    mem_limit: 336m
+    mem_limit: 640m # peak 7d +20%
     image: fnsys/dockhand:latest
     container_name: dockhand
     restart: unless-stopped

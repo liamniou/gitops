@@ -1,6 +1,6 @@
 services:
   outline:
-    mem_limit: 336m
+    mem_limit: 816m # peak 7d +20%
     image: docker.getoutline.com/outlinewiki/outline:latest
     container_name: outline
     restart: unless-stopped

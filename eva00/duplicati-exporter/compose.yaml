@@ -1,6 +1,6 @@
 services:
   duplicati-exporter:
-    mem_limit: 64m
+    mem_limit: 80m # peak 7d +20%
     image: ghcr.io/liamniou/duplicati-exporter:latest
     container_name: duplicati-exporter
     restart: unless-stopped

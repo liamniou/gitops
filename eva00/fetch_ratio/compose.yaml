@@ -1,6 +1,6 @@
 services:
   fetch_ratio:
-    mem_limit: 64m
+    mem_limit: 80m # peak 7d +20%
     image: ghcr.io/liamniou/fetch_ratio:latest
     container_name: fetch_ratio
     restart: unless-stopped

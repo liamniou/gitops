@@ -1,6 +1,6 @@
 services:
   calibre-web:
-    mem_limit: 64m
+    mem_limit: 640m # raised: was OOM-killed
     image: lscr.io/linuxserver/calibre-web:latest
     container_name: calibre-web
     environment:

@@ -1,6 +1,6 @@
 services:
   immich-server:
-    mem_limit: 368m
+    mem_limit: 640m # peak 7d +20%
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:release
     volumes:
@@ -21,7 +21,7 @@ services:
     restart: unless-stopped
 
   immich-machine-learning:
-    mem_limit: 64m
+    mem_limit: 2048m # raised: was OOM-killed
     container_name: immich_machine_learning
     image: ghcr.io/immich-app/immich-machine-learning:release
     volumes:
@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
 
   database:
-    mem_limit: 112m
+    mem_limit: 176m # peak 7d +20%
     container_name: immich_postgres
     image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0
     environment:

@@ -1,6 +1,6 @@
 services:
   loki:
-    mem_limit: 176m
+    mem_limit: 272m # peak 7d +20%
     image: grafana/loki:3.0.0
     container_name: loki
     restart: unless-stopped

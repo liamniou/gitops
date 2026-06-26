@@ -1,6 +1,6 @@
 services:
   metube-podcast-feed:
-    mem_limit: 64m
+    mem_limit: 96m # peak 7d +20%
     image: ghcr.io/liamniou/metube-podcast-feed:latest
     container_name: metube-podcast-feed
     restart: unless-stopped

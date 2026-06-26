@@ -1,6 +1,6 @@
 services:
   ghost:
-    mem_limit: 304m
+    mem_limit: 512m # peak 7d +20%
     image: ghost:6.45.0
     container_name: ghost
     restart: unless-stopped
@@ -27,7 +27,7 @@ services:
         condition: service_healthy
 
   ghost_db:
-    mem_limit: 128m
+    mem_limit: 192m # peak 7d +20%
     image: mysql:8.4.9
     container_name: ghost_db
     restart: unless-stopped

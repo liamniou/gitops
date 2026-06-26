@@ -1,6 +1,6 @@
 services:
   bot:
-    mem_limit: 80m
+    mem_limit: 112m # peak 7d +20%
     image: ghcr.io/liamniou/dl-yt-from-rss-bot-bot:latest
     container_name: dl-from-rss-bot
     restart: unless-stopped

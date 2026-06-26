@@ -1,6 +1,6 @@
 services:
   db:
-    mem_limit: 64m
+    mem_limit: 128m # peak 7d +20%
     image: postgres:14.23
     container_name: cal-com-db
     restart: unless-stopped
@@ -19,7 +19,7 @@ services:
       retries: 10
 
   calcom:
-    mem_limit: 832m
+    mem_limit: 1776m # peak 7d +20%
     image: calcom/cal.com:v6.2.0
     container_name: cal-com
     restart: unless-stopped

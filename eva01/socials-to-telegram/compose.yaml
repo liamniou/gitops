@@ -9,7 +9,7 @@ services:
     command: redis-server --appendonly yes
 
   bot:
-    mem_limit: 64m
+    mem_limit: 80m # peak 7d +20%
     image: ghcr.io/liamniou/socials-to-telegram:latest@sha256:77e20eb566892fae97a68fb1679b2ae6fb5064e152a1f3a3ab6ba8041a63ccaa
     container_name: socials-to-telegram-bot
     restart: unless-stopped
@@ -23,7 +23,7 @@ services:
       - redis
 
   worker:
-    mem_limit: 64m
+    mem_limit: 144m # peak 7d +20%
     image: ghcr.io/liamniou/socials-to-telegram:latest@sha256:77e20eb566892fae97a68fb1679b2ae6fb5064e152a1f3a3ab6ba8041a63ccaa
     container_name: socials-to-telegram-worker
     restart: unless-stopped

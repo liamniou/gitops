@@ -1,6 +1,6 @@
 services:
   web:
-    mem_limit: 64m
+    mem_limit: 112m # peak 7d +20%
     image: screeny05/letterboxd-list-radarr:latest
     restart: unless-stopped
     ports:

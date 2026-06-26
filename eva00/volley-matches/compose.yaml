@@ -1,6 +1,6 @@
 services:
   app:
-    mem_limit: 96m
+    mem_limit: 128m # peak 7d +20%
     image: ghcr.io/liamniou/volley-matches:latest
     container_name: volley-matches
     restart: unless-stopped

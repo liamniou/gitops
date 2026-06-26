@@ -1,6 +1,6 @@
 services:
   overseerr:
-    mem_limit: 240m
+    mem_limit: 400m # peak 7d +20%
     image: ghcr.io/liamniou/overseerr:latest
     container_name: overseerr
     restart: unless-stopped

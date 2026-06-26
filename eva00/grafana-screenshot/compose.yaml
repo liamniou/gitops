@@ -12,5 +12,5 @@ services:
       HEIGHT: "480"
       HTTP_PORT: "8080"
     shm_size: 128m
-    mem_limit: 768m
+    mem_limit: 928m # peak 7d +20%
     memswap_limit: 768m

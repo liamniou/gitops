@@ -1,6 +1,6 @@
 services:
   zigbee2mqtt:
-    mem_limit: 128m
+    mem_limit: 144m # peak 7d +20%
     image: koenkk/zigbee2mqtt:2.12.0
     container_name: zigbee2mqtt
     restart: unless-stopped

@@ -1,6 +1,6 @@
 services:
   navidrome:
-    mem_limit: 64m
+    mem_limit: 240m # peak 7d +20%
     image: deluan/navidrome:latest
     container_name: navidrome
     ports:
