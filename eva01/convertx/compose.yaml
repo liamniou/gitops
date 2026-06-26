@@ -1,5 +1,6 @@
 services:
   convertx:
+    mem_limit: 64m
     image: ghcr.io/c4illin/convertx:v0.17.0
     container_name: convertx
     restart: unless-stopped

@@ -1,5 +1,6 @@
 services:
   web:
+    mem_limit: 64m
     image: ghcr.io/liamniou/eavesdrop.fm:latest
     container_name: eavesdrop-web
     restart: unless-stopped

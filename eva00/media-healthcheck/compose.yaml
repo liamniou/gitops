@@ -1,5 +1,6 @@
 services:
   media-healthcheck:
+    mem_limit: 64m
     image: python:3-alpine
     container_name: media-healthcheck
     command: python /app/server.py

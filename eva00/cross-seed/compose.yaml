@@ -1,5 +1,6 @@
 services:
   cross-seed:
+    mem_limit: 256m  # estimate: service disabled, no Prometheus data
     profiles: ["disabled"]  # remove to enable
     command: daemon
     container_name: cross-seed

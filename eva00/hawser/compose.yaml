@@ -1,5 +1,6 @@
 services:
   hawser:
+    mem_limit: 64m
     image: ghcr.io/finsys/hawser:latest
     container_name: hawser
     restart: unless-stopped

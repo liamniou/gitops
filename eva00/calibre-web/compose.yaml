@@ -1,5 +1,6 @@
 services:
   calibre-web:
+    mem_limit: 64m
     image: lscr.io/linuxserver/calibre-web:latest
     container_name: calibre-web
     environment:

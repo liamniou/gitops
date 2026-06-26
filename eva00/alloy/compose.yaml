@@ -1,5 +1,6 @@
 services:
   alloy:
+    mem_limit: 1360m
     image: grafana/alloy:latest
     container_name: alloy
     restart: unless-stopped

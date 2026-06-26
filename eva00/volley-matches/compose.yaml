@@ -1,0 +1,18 @@
+services:
+  app:
+    mem_limit: 96m
+    image: ghcr.io/liamniou/volley-matches:latest
+    container_name: volley-matches
+    restart: unless-stopped
+    environment:
+      NEXTAUTH_URL: https://vb.link.cf
+      AUTH_SECRET: ${AUTH_SECRET}
+      MONGODB_URI: ${MONGODB_URI}
+      EMAIL_SERVER_HOST: ${EMAIL_SERVER_HOST}
+      EMAIL_SERVER_PORT: ${EMAIL_SERVER_PORT}
+      EMAIL_SERVER_USER: ${EMAIL_SERVER_USER}
+      EMAIL_SERVER_PASSWORD: ${EMAIL_SERVER_PASSWORD}
+      EMAIL_FROM: ${EMAIL_FROM}
+      ADMIN_EMAILS: ${ADMIN_EMAILS}
+    ports:
+      - "3043:3000"

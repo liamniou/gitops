@@ -1,5 +1,6 @@
 services:
   web:
+    mem_limit: 64m
     image: screeny05/letterboxd-list-radarr:latest
     restart: unless-stopped
     ports:
@@ -9,5 +10,6 @@ services:
     depends_on:
       - redis
   redis:
+    mem_limit: 64m
     image: redis:6.0
     restart: unless-stopped

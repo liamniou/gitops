@@ -1,5 +1,6 @@
 services:
   bus-exporter:
+    mem_limit: 64m
     image: ghcr.io/liamniou/bus-exporter:latest
     container_name: bus-exporter
     restart: unless-stopped
@@ -10,6 +11,7 @@ services:
       TZ: Europe/Stockholm
 
   weather-exporter:
+    mem_limit: 64m
     image: ghcr.io/liamniou/weather-exporter:latest
     container_name: weather-exporter
     restart: unless-stopped

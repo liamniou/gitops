@@ -1,5 +1,6 @@
 services:
   couchdb:
+    mem_limit: 96m
     image: couchdb:3
     container_name: couchdb
     restart: unless-stopped

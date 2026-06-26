@@ -1,5 +1,6 @@
 services:
   kometa:
+    mem_limit: 64m
     image: kometateam/kometa:nightly
     container_name: kometa
     command: tail -f /dev/null

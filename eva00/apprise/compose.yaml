@@ -1,5 +1,6 @@
 services:
   apprise-api:
+    mem_limit: 64m
     image: lscr.io/linuxserver/apprise-api:latest
     container_name: apprise-api
     environment:

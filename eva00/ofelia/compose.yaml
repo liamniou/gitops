@@ -1,5 +1,6 @@
 services:
   ofelia:
+    mem_limit: 64m
     image: mcuadros/ofelia:latest
     container_name: ofelia-scheduler
     restart: unless-stopped

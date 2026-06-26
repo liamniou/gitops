@@ -1,5 +1,6 @@
 services:
   autobrr:
+    mem_limit: 128m  # estimate: service disabled, no Prometheus data
     image: ghcr.io/autobrr/autobrr:latest
     container_name: autobrr
     profiles: ["disabled"]  # remove to enable

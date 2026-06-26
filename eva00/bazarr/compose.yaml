@@ -1,5 +1,6 @@
 services:
   bazarr:
+    mem_limit: 832m
     image: linuxserver/bazarr:1.5.6
     container_name: bazarr
     restart: unless-stopped

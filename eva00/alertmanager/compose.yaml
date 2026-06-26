@@ -1,5 +1,6 @@
 services:
   alertmanager:
+    mem_limit: 64m
     image: prom/alertmanager:latest
     container_name: alertmanager
     restart: unless-stopped

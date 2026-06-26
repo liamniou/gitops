@@ -1,5 +1,6 @@
 services:
   orpheus-poll:
+    mem_limit: 64m
     image: ghcr.io/liamniou/orpheus-poll-to-playlist:latest
     container_name: orpheus-poll-to-playlist
     restart: unless-stopped
@@ -30,6 +31,7 @@ services:
       start_period: 10s
 
   poll-notifier:
+    mem_limit: 64m
     image: ghcr.io/liamniou/orpheus-poll-to-playlist-notifier:latest
     container_name: orpheus-poll-notifier
     restart: unless-stopped

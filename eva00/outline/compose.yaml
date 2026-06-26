@@ -1,5 +1,6 @@
 services:
   outline:
+    mem_limit: 336m
     image: docker.getoutline.com/outlinewiki/outline:latest
     container_name: outline
     restart: unless-stopped
@@ -32,6 +33,7 @@ services:
       - SMTP_SECURE=false
 
   outline_postgres:
+    mem_limit: 64m
     image: postgres:16-alpine
     container_name: outline_postgres
     restart: unless-stopped
@@ -48,6 +50,7 @@ services:
       retries: 5
 
   outline_redis:
+    mem_limit: 64m
     image: redis:7-alpine
     container_name: outline_redis
     restart: unless-stopped

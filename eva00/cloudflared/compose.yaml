@@ -1,5 +1,6 @@
 services:
   cloudflared:
+    mem_limit: 64m
     image: cloudflare/cloudflared:latest
     container_name: cloudflared
     restart: unless-stopped

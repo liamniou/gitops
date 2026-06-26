@@ -1,5 +1,6 @@
 services:
   bot:
+    mem_limit: 80m
     image: ghcr.io/liamniou/dl-yt-from-rss-bot-bot:latest
     container_name: dl-from-rss-bot
     restart: unless-stopped
@@ -12,6 +13,7 @@ services:
       - /home/lestar/_volumes/dl-from-rss/db:/home/app/db
 
   checker:
+    mem_limit: 64m
     image: ghcr.io/liamniou/dl-yt-from-rss-bot-checker:latest
     container_name: dl-from-rss-checker
     restart: unless-stopped
@@ -34,6 +36,7 @@ services:
       ofelia.job-exec.dl-rss-checker-16.command: "python main.py"
 
   prefetch:
+    mem_limit: 64m
     image: ghcr.io/liamniou/dl-yt-from-rss-bot-prefetch:latest
     container_name: dl-from-rss-prefetch
     restart: unless-stopped

@@ -1,5 +1,6 @@
 services:
   rallly_db:
+    mem_limit: 64m
     image: postgres:14.23
     container_name: rallly-db
     restart: unless-stopped
@@ -15,6 +16,7 @@ services:
       retries: 10
 
   rallly:
+    mem_limit: 384m
     image: lukevella/rallly:4.10.2
     container_name: rallly
     restart: unless-stopped

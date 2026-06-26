@@ -1,5 +1,6 @@
 services:
   duplicati:
+    mem_limit: 480m
     image: lscr.io/linuxserver/duplicati:latest
     container_name: duplicati
     restart: unless-stopped

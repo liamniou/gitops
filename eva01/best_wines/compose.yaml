@@ -1,5 +1,6 @@
 services:
   web:
+    mem_limit: 64m
     image: ghcr.io/liamniou/best-wines-in-sweden-web:latest@sha256:4169e4c6dd857f2683d137655cf4067a4cb1cf17e802b2da8fe42b8405ea68c7
     container_name: best_wines
     restart: unless-stopped

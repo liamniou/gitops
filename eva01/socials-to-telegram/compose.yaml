@@ -1,5 +1,6 @@
 services:
   redis:
+    mem_limit: 64m
     image: redis:8.8.0-alpine
     container_name: socials-to-telegram-redis
     restart: unless-stopped
@@ -8,6 +9,7 @@ services:
     command: redis-server --appendonly yes
 
   bot:
+    mem_limit: 64m
     image: ghcr.io/liamniou/socials-to-telegram:latest@sha256:77e20eb566892fae97a68fb1679b2ae6fb5064e152a1f3a3ab6ba8041a63ccaa
     container_name: socials-to-telegram-bot
     restart: unless-stopped
@@ -21,6 +23,7 @@ services:
       - redis
 
   worker:
+    mem_limit: 64m
     image: ghcr.io/liamniou/socials-to-telegram:latest@sha256:77e20eb566892fae97a68fb1679b2ae6fb5064e152a1f3a3ab6ba8041a63ccaa
     container_name: socials-to-telegram-worker
     restart: unless-stopped
@@ -35,6 +38,7 @@ services:
       - redis
 
   metrics:
+    mem_limit: 64m
     image: ghcr.io/liamniou/socials-to-telegram:latest@sha256:77e20eb566892fae97a68fb1679b2ae6fb5064e152a1f3a3ab6ba8041a63ccaa
     container_name: socials-to-telegram-metrics
     restart: unless-stopped
