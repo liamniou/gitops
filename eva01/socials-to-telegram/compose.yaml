@@ -10,7 +10,7 @@ services:
 
   bot:
     mem_limit: 80m # peak 7d +20%
-    image: ghcr.io/liamniou/socials-to-telegram:latest@sha256:77e20eb566892fae97a68fb1679b2ae6fb5064e152a1f3a3ab6ba8041a63ccaa
+    image: ghcr.io/liamniou/socials-to-telegram:sha-fe0284d
     container_name: socials-to-telegram-bot
     restart: unless-stopped
     environment:
@@ -24,7 +24,7 @@ services:
 
   worker:
     mem_limit: 144m # peak 7d +20%
-    image: ghcr.io/liamniou/socials-to-telegram:latest@sha256:77e20eb566892fae97a68fb1679b2ae6fb5064e152a1f3a3ab6ba8041a63ccaa
+    image: ghcr.io/liamniou/socials-to-telegram:sha-fe0284d
     container_name: socials-to-telegram-worker
     restart: unless-stopped
     command: ["worker.py"]
@@ -39,7 +39,7 @@ services:
 
   metrics:
     mem_limit: 64m
-    image: ghcr.io/liamniou/socials-to-telegram:latest@sha256:77e20eb566892fae97a68fb1679b2ae6fb5064e152a1f3a3ab6ba8041a63ccaa
+    image: ghcr.io/liamniou/socials-to-telegram:sha-fe0284d
     container_name: socials-to-telegram-metrics
     restart: unless-stopped
     command: ["metrics.py"]
