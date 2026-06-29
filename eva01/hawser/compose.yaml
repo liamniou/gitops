@@ -6,6 +6,7 @@ services:
     restart: unless-stopped
     environment:
       TZ: Europe/Stockholm
+      ALLOW_INSECURE_NO_AUTH: "true"
     ports:
       - "2376:2376"
     volumes:
