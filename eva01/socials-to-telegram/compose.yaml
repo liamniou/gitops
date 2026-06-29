@@ -18,7 +18,7 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: "6379"
     volumes:
-      - /home/lestar/_volumes/socials-to-telegram/cookies.txt:/app/cookies.txt:ro
+      - /home/lestar/_volumes/socials-to-telegram/cookies.txt:/app/cookies.txt
     depends_on:
       - redis
 
@@ -33,7 +33,7 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: "6379"
     volumes:
-      - /home/lestar/_volumes/socials-to-telegram/cookies.txt:/app/cookies.txt:ro
+      - /home/lestar/_volumes/socials-to-telegram/cookies.txt:/app/cookies.txt
     depends_on:
       - redis
 
