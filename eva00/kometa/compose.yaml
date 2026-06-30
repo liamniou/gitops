@@ -8,10 +8,20 @@ services:
     environment:
       - KOMETA_LOG_LEVEL=debug
       - TZ=UTC
+      # Overseerr -> per-user "Requests" collections.
+      # See config/scripts/gen_overseerr_requests.py (regenerates the
+      # overseerr-*-requests.yml files before each Kometa run).
+      - OVERSEERR_URL=http://host.docker.internal:5055
+      - OVERSEERR_API_KEY=${OVERSEERR_API_KEY} # injected by doco-cd from Vaultwarden
+      - EXCLUDE_USERS=Test user
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - /home/lestar/_volumes/kometa/config:/config
       - /home/lestar/_volumes/kometa/data:/data
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.kometa-sync.schedule: "@every 6h"
-      ofelia.job-exec.kometa-sync.command: "python3 kometa.py --run"
+      # Refresh Overseerr request collections first, then run Kometa.
+      # Uses ';' so Kometa still runs (with the last good files) if the refresh fails.
+      ofelia.job-exec.kometa-sync.command: "sh -c 'python3 /config/scripts/gen_overseerr_requests.py; python3 kometa.py --run'"
