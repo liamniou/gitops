@@ -1,0 +1,18 @@
+services:
+  maintainerr:
+    mem_limit: 768m # initial estimate, retune after 7d
+    image: ghcr.io/maintainerr/maintainerr:latest
+    container_name: maintainerr
+    restart: unless-stopped
+    user: "1000:1000"
+    environment:
+      - TZ=Europe/Stockholm
+    ports:
+      - 6246:6246
+    volumes:
+      # All config lives in the app DB here (Plex/Tautulli/Seerr keys, rules,
+      # Discord webhook). No env secrets needed; configure via the web UI.
+      - /home/lestar/_volumes/maintainerr/data:/opt/data
+    extra_hosts:
+      # Reach Overseerr/Tautulli/Plex published on the host LAN IP.
+      - "host.docker.internal:host-gateway"
