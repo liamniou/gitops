@@ -1,0 +1,16 @@
+services:
+  invoice-qr:
+    mem_limit: 512m
+    image: ghcr.io/liamniou/invoice-qr:latest
+    container_name: invoice-qr
+    restart: unless-stopped
+    ports:
+      - "7860:7860"
+    environment:
+      GRADIO_SERVER_NAME: 0.0.0.0
+      GRADIO_SERVER_PORT: 7860
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:7860/')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
