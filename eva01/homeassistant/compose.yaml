@@ -1,7 +1,7 @@
 services:
   homeassistant:
     mem_limit: 736m # peak 7d +20%
-    image: ghcr.io/home-assistant/home-assistant:2026.7.2
+    image: ghcr.io/home-assistant/home-assistant:2026.7.4
     container_name: homeassistant
     restart: unless-stopped
     network_mode: host
