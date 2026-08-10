@@ -1,7 +1,7 @@
 services:
   ghost:
     mem_limit: 512m # peak 7d +20%
-    image: ghost:6.53.0
+    image: ghost:6.56.0
     container_name: ghost
     restart: unless-stopped
     ports:
