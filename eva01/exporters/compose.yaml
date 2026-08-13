@@ -1,7 +1,7 @@
 services:
   node-exporter:
     mem_limit: 64m
-    image: prom/node-exporter:v1.11.1
+    image: prom/node-exporter:v1.12.1
     container_name: node-exporter
     restart: unless-stopped
     volumes:
