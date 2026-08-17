@@ -17,7 +17,7 @@ services:
 
   rallly:
     mem_limit: 768m # Next.js startup/build spikes
-    image: lukevella/rallly:4.12.1
+    image: lukevella/rallly:4.12.2
     container_name: rallly
     restart: unless-stopped
     depends_on:
