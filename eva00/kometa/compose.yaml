@@ -14,14 +14,35 @@ services:
       - OVERSEERR_URL=http://host.docker.internal:5055
       - OVERSEERR_API_KEY=${OVERSEERR_API_KEY} # injected by doco-cd from Vaultwarden
       - EXCLUDE_USERS=Test user
+      # Letterboxd -> camoufox-proxy when Cloudflare blocks direct requests.
+      # kometa-shim/sitecustomize.py patches letterboxdpy's fetcher.
+      - PYTHONPATH=/shim
+      - CAMOUFOX_PROXY_URL=http://camoufox-proxy:8191
+      - LETTERBOXD_PROXY_MODE=fallback # fallback | always | off
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
       - /home/lestar/_volumes/kometa/config:/config
       - /home/lestar/_volumes/kometa/data:/data
+      - ./kometa-shim:/shim:ro
+    depends_on:
+      - camoufox-proxy
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.kometa-sync.schedule: "@every 6h"
       # Refresh Overseerr request collections first, then run Kometa.
       # Uses ';' so Kometa still runs (with the last good files) if the refresh fails.
       ofelia.job-exec.kometa-sync.command: "sh -c 'python3 /config/scripts/gen_overseerr_requests.py; python3 kometa.py --run'"
+
+  # Camoufox (stealth Firefox) behind a FlareSolverr-compatible API (POST /v1).
+  # Internal only (no published port); the browser starts on demand and closes when idle.
+  camoufox-proxy:
+    build: ./camoufox-proxy
+    container_name: camoufox-proxy
+    restart: unless-stopped
+    mem_limit: 1536m # ~800MiB with browser open, ~125MiB idle (browser closes after IDLE_TIMEOUT)
+    shm_size: 256m
+    environment:
+      - ALLOWED_DOMAINS=letterboxd.com
+      - IDLE_TIMEOUT=300 # seconds before the idle browser is closed
+      - CHALLENGE_TIMEOUT=30 # seconds per attempt before relaunching the browser
