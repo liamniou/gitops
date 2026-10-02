@@ -1,0 +1,18 @@
+services:
+  caddy:
+    image: caddy:2.11.4-alpine
+    container_name: caddy
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - /home/lestar/_volumes/caddy/site:/srv:ro
+      - /media/caddy:/downloads:ro
+      - /home/lestar/_volumes/caddy/data:/data
+      - /home/lestar/_volumes/caddy/config:/config
+    environment:
+      - TZ=Europe/Stockholm
+      # Vaultwarden item: caddy-eva00
+      - CADDY_BASIC_AUTH_USER=${CADDY_BASIC_AUTH_USER}
+      - CADDY_BASIC_AUTH_HASH=${CADDY_BASIC_AUTH_HASH}
+    restart: unless-stopped

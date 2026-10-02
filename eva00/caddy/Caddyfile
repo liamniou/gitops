@@ -1,0 +1,28 @@
+{
+	admin off
+	auto_https off
+}
+
+:8090 {
+	basicauth {
+		{$CADDY_BASIC_AUTH_USER} {$CADDY_BASIC_AUTH_HASH}
+	}
+
+	handle_path /downloads/* {
+		root * /downloads
+		file_server browse
+	}
+
+	handle {
+		root * /srv
+		try_files {path} /index.html
+		file_server
+	}
+
+	encode zstd gzip
+
+	log {
+		output stdout
+		format console
+	}
+}
