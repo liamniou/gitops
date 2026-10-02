@@ -1,0 +1,29 @@
+services:
+  radarr-ru:
+    container_name: radarr-ru
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+      - DOTNET_STARTUP_HOOKS=/patch/RadarrNativeTitle.dll
+      # Vaultwarden item: radarr-ru-eva00
+      - RADARR_TMDB_API_KEY=${RADARR_TMDB_API_KEY}
+      - RADARR_TMDB_TITLE_LANGS=ru
+      - RADARR_NATIVE_TITLE_DEBUG=1
+    healthcheck:
+      interval: 1h
+      retries: 3
+      test:
+        - CMD
+        - ls
+        - -al
+        - /mnt
+      timeout: 10s
+    # Built from github.com/liamniou/arr-ru-patches (linuxserver/radarr + /patch hook DLLs).
+    image: ghcr.io/liamniou/radarr-ru:sha-aea3701
+    ports:
+      - 7879:7878
+    restart: unless-stopped
+    volumes:
+      - /home/lestar/_volumes/radarr-ru/configs:/config
+      - /media:/media
