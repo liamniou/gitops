@@ -1,0 +1,28 @@
+services:
+  sonarr-ru:
+    container_name: sonarr-ru
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+      # Vaultwarden item: sonarr-ru-eva00
+      - SONARR_TMDB_API_KEY=${SONARR_TMDB_API_KEY}
+      - SONARR_TMDB_TITLE_LANGS=ru
+      - DEBUG_RUNTIMEPATCHES=1
+    healthcheck:
+      interval: 1h
+      retries: 3
+      test:
+        - CMD
+        - ls
+        - -al
+        - /mnt
+      timeout: 10s
+    # Built from github.com/liamniou/arr-ru-patches (linuxserver/sonarr + Sonarr.RuntimePatches.dll).
+    image: ghcr.io/liamniou/sonarr-ru:sha-4e6c994
+    ports:
+      - 8990:8989
+    restart: unless-stopped
+    volumes:
+      - /home/lestar/_volumes/sonarr-ru/configs:/config
+      - /media:/media
