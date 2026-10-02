@@ -1,0 +1,25 @@
+services:
+  plex-arr-date-sync:
+    # Built from github.com/liamniou/plex-arr-date-sync.
+    image: ghcr.io/liamniou/plex-arr-date-sync:sha-3fde492
+    container_name: plex-arr-date-sync
+    restart: unless-stopped
+    environment:
+      PLEX_URL: http://192.168.0.237:32400
+      PLEX_MOVIE_LIBRARY: Films
+      PLEX_TV_LIBRARY: TV
+      RADARR_URL: https://radarr.tokyo3.eu
+      SONARR_URL: https://sonarr.tokyo3.eu
+      DRY_RUN: "false"
+      TOLERANCE_SECONDS: "86400"
+      TZ: Europe/Stockholm
+      # Vaultwarden item: plex-arr-date-sync-eva00
+      PLEX_TOKEN: ${PLEX_TOKEN}
+      RADARR_API_KEY: ${RADARR_API_KEY}
+      SONARR_API_KEY: ${SONARR_API_KEY}
+    labels:
+      # Scheduled by the shared Ofelia container (eva00/ofelia) which runs
+      # with `daemon --docker` and reads these labels.
+      ofelia.enabled: "true"
+      ofelia.job-exec.plex-arr-date-sync.schedule: "@daily"
+      ofelia.job-exec.plex-arr-date-sync.command: "python3 /app/sync.py"
