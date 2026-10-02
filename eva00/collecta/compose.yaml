@@ -1,0 +1,29 @@
+services:
+  collecta:
+    # Built from github.com/liamniou/collecta.
+    image: ghcr.io/liamniou/collecta:sha-28fcd87
+    container_name: collecta
+    environment:
+      LLM_BASE_URL: http://192.168.0.237:4141/v1
+      LLM_MODEL: gemini-3.7-flash
+      WHISPER_ASR_URL: http://192.168.0.237:9000
+      RADARR_URL: http://192.168.0.237:7878
+      RADARR_WEB_URL: https://radarr.tokyo3.eu
+      RADARR_QUALITY_PROFILE: 2160p Balanced
+      RADARR_ROOT_FOLDER: /media/Movies
+      KOMETA_CONFIG_DIR: /kometa-config
+      KOMETA_LIBRARY: Films
+      DATA_DIR: /data
+      # Vaultwarden item: collecta-eva00
+      TMDB_API_KEY: ${TMDB_API_KEY}
+      RADARR_API_KEY: ${RADARR_API_KEY}
+      LLM_API_KEY: ${LLM_API_KEY}
+    ports:
+      - "5053:5000"
+    restart: unless-stopped
+    volumes:
+      - /home/lestar/_volumes/collecta/data:/data
+      # Kometa collection YAML is written here; Kometa picks it up on its next run.
+      - /home/lestar/_volumes/kometa/config:/kometa-config
+      # Lets collecta trigger a Kometa run (docker exec into the kometa container).
+      - /var/run/docker.sock:/var/run/docker.sock
