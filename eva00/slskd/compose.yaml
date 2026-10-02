@@ -1,0 +1,15 @@
+services:
+  slskd:
+    image: slskd/slskd:0.24.5
+    container_name: slskd
+    ports:
+      - "5030:5030"
+      - "5031:5031"
+      - "50300:50300"
+    environment:
+      # Soulseek credentials and API key are set via the web UI and stored in slskd.yml under _volumes.
+      - SLSKD_REMOTE_CONFIGURATION=true
+    volumes:
+      - /home/lestar/_volumes/slskd/data:/app
+      - /home/lestar/media/Music:/downloads
+    restart: always

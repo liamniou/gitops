@@ -1,0 +1,16 @@
+services:
+  lingarr:
+    image: ghcr.io/lingarr-translate/lingarr:1.3.0
+    container_name: lingarr
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_URLS=http://+:9876
+      - DB_CONNECTION=sqlite
+      - DB_HANGFIRE_SQLITE_PATH=/app/config/Hangfire.db
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+      - TZ=Europe/Stockholm
+    ports:
+      - 9876:9876
+    volumes:
+      - /home/lestar/_volumes/lingarr/config:/app/config
+      - /media:/media

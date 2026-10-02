@@ -1,0 +1,29 @@
+services:
+  crowbarr:
+    image: ghcr.io/amanofvaly/crowbarr:latest-cuda@sha256:84b9d98f6ff71c3c4042b571f089835b136873bcce01a60205bed4996fa6bfe1
+    container_name: crowbarr
+    profiles: ["disabled"]  # was not running at migration time; remove to enable
+    restart: unless-stopped
+    init: true
+    # Match Sonarr/Radarr (PUID/PGID 1000) so Crowbarr can write subtitles next to media.
+    user: "1000:1000"
+    environment:
+      - TZ=Europe/Stockholm
+    ports:
+      - 8449:8449
+    volumes:
+      - /home/lestar/_volumes/crowbarr/config:/config
+      # Same mount as Sonarr/Radarr so reported paths match; no path mappings needed.
+      - /media:/media
+    stop_grace_period: 45s
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

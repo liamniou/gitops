@@ -1,0 +1,30 @@
+services:
+  subgen:
+    image: mccloud/subgen:latest@sha256:2841515a3b409677669f0a10d77d49160bffb8111db91640fb33a4db06b3396c
+    container_name: subgen
+    restart: unless-stopped
+    tty: true
+    ports:
+      # Bazarr Whisper provider endpoint. Host 9000 is taken by whisper-asr.
+      - 9001:9000
+    environment:
+      - TRANSCRIBE_DEVICE=cuda
+      - WHISPER_MODEL=medium
+      - WHISPER_THREADS=4
+      - CONCURRENT_TRANSCRIPTIONS=2
+      - CLEAR_VRAM_ON_COMPLETE=True
+      - WEBHOOK_PORT=9000
+      - TRANSCRIBE_OR_TRANSLATE=transcribe
+      - DEBUG=True
+      - MODEL_PATH=/subgen/models
+      - TZ=Europe/Stockholm
+    volumes:
+      # Persist downloaded Whisper models across restarts / recreation.
+      - /media/_volumes/subgen/models:/subgen/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

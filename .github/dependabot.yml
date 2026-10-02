@@ -176,3 +176,91 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/crowbarr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(crowbarr)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/lingarr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(lingarr)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/profilarr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(profilarr)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/prowlarr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(prowlarr)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/slskd/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(slskd)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/subgen/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(subgen)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/unpackerr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(unpackerr)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/whisper-asr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(whisper-asr)"
+    labels:
+      - "dependencies"
+      - "docker"

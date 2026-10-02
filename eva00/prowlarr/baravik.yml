@@ -1,0 +1,129 @@
+---
+# baravik.yml — Cardigann definition for the Baravik PunBB tracker
+id: baravik
+name: Baravik
+description: "Baravik (Баравік) — Belarusian PunBB-based torrent tracker"
+language: be-BY
+type: semi-private
+encoding: UTF-8
+followredirect: true
+testlinktorrent: false
+requestDelay: 2
+
+links:
+  - https://baravik.org/
+
+caps:
+  categorymappings:
+    - {id: 8, cat: Movies, desc: "Фільмы на роднай мове"}
+    - {id: 31, cat: Movies, desc: "Субтытры"}
+    - {id: 9, cat: Movies, desc: "Беларусфільм"}
+    - {id: 11, cat: TV/Documentary, desc: "Дакументалістыка"}
+    - {id: 21, cat: Movies/Other, desc: "Мультфільмы"}
+    - {id: 26, cat: TV, desc: "Сэрыялы"}
+    - {id: 30, cat: TV, desc: "Тэатар"}
+    - {id: 10, cat: Movies/Other, desc: "Іншыя (кіно, відэа)"}
+    - {id: 12, cat: Audio, desc: "Рок"}
+    - {id: 13, cat: Audio, desc: "Поп"}
+    - {id: 14, cat: Audio, desc: "Народныя"}
+    - {id: 25, cat: Audio/Audiobook, desc: "Аўдыёкнігі, радыёспектаклі"}
+    - {id: 15, cat: Audio/Other, desc: "Іншыя (музыка, аўдыё)"}
+    - {id: 22, cat: Books/EBook, desc: "Кнігі"}
+    - {id: 24, cat: Books, desc: "Студэнтам"}
+    - {id: 16, cat: Books/Other, desc: "Іншыя (літаратура)"}
+    - {id: 23, cat: PC, desc: "Праграмнае забеспячэнне"}
+    - {id: 17, cat: Other, desc: "Іншыя раздачы"}
+  modes:
+    search: [q]
+    movie-search: [q]
+    tv-search: [q]
+    music-search: [q]
+    book-search: [q]
+
+settings:
+  - name: username
+    type: text
+    label: Username
+  - name: password
+    type: password
+    label: Password
+  - name: info
+    type: info
+    label: Note
+    default: "The forum does not expose size or seeders, so defaults are used. Only the public magnet link from each topic is grabbed. Empty (RSS) queries require valid credentials as they use the logged-in Active Topics list."
+
+login:
+  method: form
+  path: login.php
+  form: form#afocus
+  inputs:
+    req_username: "{{ .Config.username }}"
+    req_password: "{{ .Config.password }}"
+    save_pass: "1"
+  # PunBB returns a benign "redirecting..." interstitial on success, so login
+  # is validated by the test below rather than an error selector.
+  test:
+    path: search.php?action=show_recent&show_as=topics
+    selector: div.main-item div.item-subject a[href*="/topic/"]
+
+search:
+  paths:
+    - path: search.php
+      method: get
+      followredirect: true
+  inputs:
+    action: "{{ if .Keywords }}search{{ else }}show_recent{{ end }}"
+    keywords: "{{ .Keywords }}"
+    # value = time window in seconds for the empty (RSS) show_recent listing; 30 days
+    value: 2592000
+    search_in: 1
+    sort_by: 0
+    sort_dir: DESC
+    show_as: topics
+  rows:
+    selector: div.main-item:has(div.item-subject a[href*="/topic/"])
+  fields:
+    category:
+      selector: ul.item-info li.info-forum a[href*="/forum/"]
+      attribute: href
+      optional: true
+      default: "17"
+      filters:
+        - name: regexp
+          args: "/forum/(\\d+)"
+    title:
+      selector: div.item-subject h3 a[href*="/topic/"]
+    details:
+      selector: div.item-subject h3 a[href*="/topic/"]
+      attribute: href
+    download:
+      selector: div.item-subject h3 a[href*="/topic/"]
+      attribute: href
+    date:
+      selector: ul.item-info li.info-lastpost strong a
+      filters:
+        - name: append
+          args: " +03:00" # Europe/Minsk — adjust if dates look off
+        - name: dateparse
+          args: "yyyy-MM-dd HH:mm:ss zzz"
+    size:
+      text: 512 MB
+    seeders:
+      text: 1
+    leechers:
+      text: 0
+    downloadvolumefactor:
+      text: 0
+    uploadvolumefactor:
+      text: 1
+
+# Grab step: the magnet is injected into the anchor by JS, so pull it from the
+# inline <script> (with a plain-anchor fallback for posts that expose it directly).
+download:
+  selectors:
+    - selector: a[href^="magnet:"]
+      attribute: href
+    - selector: script:contains("magnet:")
+      filters:
+        - name: regexp
+          args: "(magnet:[^']+)"

@@ -1,0 +1,14 @@
+services:
+  prowlarr:
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    image: lscr.io/linuxserver/prowlarr:2.6.5
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+    volumes:
+      - /home/lestar/_volumes/prowlarr/configs:/config
+      - ./baravik.yml:/config/Definitions/Custom/baravik.yml:ro

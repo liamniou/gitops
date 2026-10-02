@@ -1,0 +1,22 @@
+services:
+  whisper-asr:
+    image: onerahmet/openai-whisper-asr-webservice:v1.10.0-gpu
+    container_name: whisper-asr
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+    environment:
+      - ASR_ENGINE=faster_whisper
+      - ASR_MODEL=small
+      - ASR_MODEL_PATH=/data/whisper
+      - TZ=Europe/Stockholm
+    volumes:
+      # Persist downloaded models so they survive restarts / recreation.
+      - /media/_volumes/whisper-asr/cache:/data/whisper
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
