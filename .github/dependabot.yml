@@ -297,3 +297,14 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/radarr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(radarr)"
+    labels:
+      - "dependencies"
+      - "docker"
