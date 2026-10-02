@@ -20,7 +20,7 @@ services:
       - browserless
 
   browserless:
-    image: browserless/chrome:latest@sha256:5080f14e7e34f79611d11f51acc0ea08cee511bba99991a2b438f762eb6e0715
+    image: browserless/chrome:latest@sha256:57d19e414d9fe4ae9d2ab12ba768c97f38d51246c5b31af55a009205c136012f
     restart: always
     ulimits:
       core:
