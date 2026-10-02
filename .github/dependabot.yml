@@ -385,3 +385,14 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/camoufox_fetch_ratio/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(camoufox_fetch_ratio)"
+    labels:
+      - "dependencies"
+      - "docker"

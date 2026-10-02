@@ -1,0 +1,18 @@
+services:
+  # Single container serving both sites; metrics on :27500 carry a "site" label.
+  ratio_exporter:
+    container_name: ratio_exporter
+    # Built from github.com/liamniou/camoufox_fetch_ratio.
+    image: ghcr.io/liamniou/camoufox_fetch_ratio:sha-5771a20
+    mem_limit: 3008m  # avg 7d usage (~2.5GB) +20%; caps the memory leak (peaked ~8.9GB)
+    restart: unless-stopped
+    environment:
+      EXPORTER_PORT: "27500"
+      FETCH_INTERVAL: "3600"
+      MAX_RETRIES: "3"
+      RETRY_DELAY: "60"
+      # Vaultwarden item: camoufox-fetch-ratio-eva00
+      SITES_CONFIG: ${SITES_CONFIG}
+      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL}
+    ports:
+      - 27500:27500
