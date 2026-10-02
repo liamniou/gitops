@@ -363,3 +363,14 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/qbittorrent-exporter/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(qbittorrent-exporter)"
+    labels:
+      - "dependencies"
+      - "docker"

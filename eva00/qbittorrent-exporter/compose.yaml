@@ -1,0 +1,40 @@
+services:
+  # Exporter for qbit-9088 (DHT Downloads - main client)
+  qbit-exporter-9088:
+    # Built from github.com/liamniou/qbittorrent-exporter.
+    image: ghcr.io/liamniou/qbittorrent-exporter:sha-4604225
+    container_name: qbit-exporter-9088
+    restart: unless-stopped
+    environment:
+      - QBIT_HOST=192.168.0.237
+      - QBIT_PORT=9088
+      - QBIT_USERNAME=admin
+      # Vaultwarden item: qbittorrent-exporter-eva00
+      - QBIT_PASSWORD=${QBIT_9088_PASSWORD}
+      - EXPORTER_PORT=9100
+    ports:
+      - "18088:9100"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9100/metrics')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Exporter for qbit-9089 (No DHT)
+  qbit-exporter-9089:
+    image: ghcr.io/liamniou/qbittorrent-exporter:sha-4604225
+    container_name: qbit-exporter-9089
+    restart: unless-stopped
+    environment:
+      - QBIT_HOST=192.168.0.237
+      - QBIT_PORT=9089
+      - QBIT_USERNAME=admin
+      - QBIT_PASSWORD=${QBIT_9089_PASSWORD}
+      - EXPORTER_PORT=9100
+    ports:
+      - "18089:9100"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9100/metrics')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
