@@ -1,0 +1,23 @@
+services:
+  radarr-by:
+    container_name: radarr-by
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    healthcheck:
+      interval: 1h
+      retries: 3
+      test:
+        - CMD
+        - ls
+        - -al
+        - /mnt
+      timeout: 10s
+    image: linuxserver/radarr:6.1.1.10360-ls303
+    ports:
+      - 7880:7878
+    restart: unless-stopped
+    volumes:
+      - /home/lestar/_volumes/radarr-by/configs:/config
+      - /media:/media
