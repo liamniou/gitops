@@ -1,0 +1,16 @@
+services:
+  qui:
+    image: ghcr.io/autobrr/qui:v1.19.0
+    container_name: qui
+    restart: unless-stopped
+    ports:
+      - "7476:7476"
+    volumes:
+      - /home/lestar/_volumes/qui:/config
+    environment:
+      QUI__HOST: "0.0.0.0"
+      QUI__PORT: "7476"
+      # Vaultwarden item: qui-eva00
+      QUI__SESSION_SECRET: ${QUI_SESSION_SECRET}
+      QUI__LOG_LEVEL: "INFO"
+      QUI__LOG_PATH: "/config/logs/qui.log"
