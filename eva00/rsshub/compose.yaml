@@ -1,0 +1,37 @@
+services:
+  rsshub:
+    container_name: rsshub
+    image: diygod/rsshub:latest@sha256:0e93cec4ee2860e014c74049d9890f176e9debab6bd0572891246f858ea0d003
+    restart: always
+    ports:
+      - '1200:1200'
+    environment:
+      NODE_ENV: production
+      CACHE_TYPE: redis
+      REDIS_URL: 'redis://redis:6379/'
+      PUPPETEER_WS_ENDPOINT: 'ws://browserless:3000'
+      YOUTUBE_CLIENT_ID: '164043742360-7ncd82a3k5kkqvgmrf89ra1so4h01svb.apps.googleusercontent.com'
+      # Vaultwarden item: rsshub-eva00
+      YOUTUBE_KEY: ${YOUTUBE_KEY}
+      YOUTUBE_CLIENT_SECRET: ${YOUTUBE_CLIENT_SECRET}
+      YOUTUBE_REFRESH_TOKEN: ${YOUTUBE_REFRESH_TOKEN}
+    depends_on:
+      - redis
+      - browserless
+
+  browserless:
+    image: browserless/chrome:latest@sha256:5080f14e7e34f79611d11f51acc0ea08cee511bba99991a2b438f762eb6e0715
+    restart: always
+    ulimits:
+      core:
+        hard: 0
+        soft: 0
+
+  redis:
+    image: redis:7.2.3-alpine3.18
+    restart: always
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
