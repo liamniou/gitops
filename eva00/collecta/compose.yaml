@@ -1,7 +1,7 @@
 services:
   collecta:
     # Built from github.com/liamniou/collecta.
-    image: ghcr.io/liamniou/collecta:sha-28fcd87
+    image: ghcr.io/liamniou/collecta:sha-0ac1a16
     container_name: collecta
     environment:
       LLM_BASE_URL: http://192.168.0.237:4141/v1
