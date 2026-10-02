@@ -3,6 +3,7 @@ services:
     mem_limit: 112m # peak 7d +20%
     image: ghcr.io/liamniou/orpheus-poll-to-playlist:latest
     container_name: orpheus-poll-to-playlist
+    profiles: ["disabled"]  # remove to enable
     restart: unless-stopped
     ports:
       - "7575:7575"
@@ -34,6 +35,7 @@ services:
     mem_limit: 64m
     image: ghcr.io/liamniou/orpheus-poll-to-playlist-notifier:latest
     container_name: orpheus-poll-notifier
+    profiles: ["disabled"]  # remove to enable
     restart: unless-stopped
     volumes:
       - /home/lestar/_volumes/orpheus-poll-to-playlist/data:/app/data
