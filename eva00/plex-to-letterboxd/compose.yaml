@@ -1,0 +1,30 @@
+# Periodically exports Plex watch history to Letterboxd via CSV upload.
+# Scheduled by the shared Ofelia container (eva00/ofelia); the container itself idles.
+# One-shot manual run: docker exec plex-to-letterboxd python main.py
+
+services:
+  plex-to-letterboxd:
+    # Built from github.com/liamniou/plex-to-letterboxd.
+    image: ghcr.io/liamniou/plex-to-letterboxd:sha-fc3be22
+    container_name: plex-to-letterboxd
+    restart: unless-stopped
+    command: tail -f /dev/null
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.plex-sync.schedule: "@every 6h"
+      ofelia.job-exec.plex-sync.command: "python main.py"
+    environment:
+      - PLEX_URL=http://192.168.0.237:32400
+      - PLEX_USER=
+      - PLEX_LIBRARY=Films
+      - CSV_LIMIT=5
+      - CSV_FILE=/csv/file.csv
+      - MAX_RETRIES=3
+      # Vaultwarden item: plex-to-letterboxd-eva00
+      - PLEX_TOKEN=${PLEX_TOKEN}
+      - LETTERBOXD_USERNAME=${LETTERBOXD_USERNAME}
+      - LETTERBOXD_PASSWORD=${LETTERBOXD_PASSWORD}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+    volumes:
+      - /home/lestar/_volumes/plex-to-letterboxd/csv:/csv
