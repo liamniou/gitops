@@ -1,0 +1,42 @@
+services:
+  tautulli:
+    container_name: tautulli
+    environment:
+      - TZ=Europe/Stockholm
+    image: ghcr.io/tautulli/tautulli:v2.17.1
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /home/lestar/_volumes/tautulli/configs:/config
+      - /media:/media
+
+  tautulli_exporter:
+    image: nwalke/tautulli_exporter:v0.1.0
+    container_name: tautulli_exporter
+    restart: unless-stopped
+    environment:
+      # Vaultwarden item: tautulli-eva00
+      - TAUTULLI_API_KEY=${TAUTULLI_API_KEY}
+      - TAUTULLI_URI=http://localhost:8181
+      - TAUTULLI_SSL_VERIFY=false
+      - TAUTULLI_TIMEOUT=5s
+      - SERVE_PORT=9487
+    network_mode: host
+
+  # Per-user Plex buffering events, derived from Tautulli's `sessions` table
+  # (buffer_count per active stream). The config dir is mounted read-write
+  # because SQLite WAL mode needs shared-memory locks even for readers; the
+  # exporter only issues SELECTs (PRAGMA query_only = ON).
+  tautulli_buffer_exporter:
+    # Built from github.com/liamniou/tautulli-buffer-exporter.
+    image: ghcr.io/liamniou/tautulli-buffer-exporter:sha-b8c460f
+    container_name: tautulli_buffer_exporter
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TZ=Europe/Stockholm
+      - TAUTULLI_DB=/tautulli/tautulli.db
+      - SERVE_PORT=9489
+      - SCRAPE_INTERVAL=30
+    volumes:
+      - /home/lestar/_volumes/tautulli/configs:/tautulli
