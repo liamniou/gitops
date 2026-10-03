@@ -1,0 +1,33 @@
+services:
+  # Standalone GitHub Copilot -> OpenAI-compatible proxy (no VS Code needed).
+  copilot-api:
+    # Built from github.com/liamniou/copilot-api (fork of ericc-ch/copilot-api at v0.7.0).
+    image: ghcr.io/liamniou/copilot-api:sha-4a7a024
+    container_name: copilot-api
+    restart: unless-stopped
+    ports:
+      # Published for OpenAI-compatible clients on the LAN (collecta uses it).
+      - "4141:4141"
+    volumes:
+      # Persists the GitHub token so auth survives restarts.
+      - copilot-data:/root/.local/share/copilot-api
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main@sha256:6a773e5c3a246b65cbe74ce942b294292c0e5f81c138f703d111bc162f7d7c3d
+    container_name: open-webui
+    restart: unless-stopped
+    depends_on:
+      - copilot-api
+    ports:
+      - "8084:8080"
+    environment:
+      - OPENAI_API_BASE_URL=http://copilot-api:4141/v1
+      # Vaultwarden item: openwebui-eva00
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ENABLE_OLLAMA_API=false
+    volumes:
+      - open-webui:/app/backend/data
+
+volumes:
+  copilot-data:
+  open-webui:
