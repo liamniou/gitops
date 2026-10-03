@@ -418,3 +418,14 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/torrent-clients/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(torrent-clients)"
+    labels:
+      - "dependencies"
+      - "docker"

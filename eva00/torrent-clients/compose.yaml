@@ -1,0 +1,75 @@
+services:
+  qbit-9089:
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 8G
+    image: qbittorrentofficial/qbittorrent-nox:5.1.2-2
+    container_name: qbit-9089
+    restart: unless-stopped
+    ports:
+      - 9089:9089
+    environment:
+      - PGID=1000
+      - PUID=1000
+      - QBT_EULA=accept
+      - QBT_VERSION=latest
+      - QBT_WEBUI_PORT=9089
+      - TZ=Europe/Stockholm
+    tty: true
+    volumes:
+      - /home/lestar/_volumes/qbit-9089/configs:/config
+      - /media/downloads:/downloads
+      - /media:/media
+      - /home/lestar/_volumes/vuetorrent/data:/vuetorrent
+
+  qbit-9088:
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 2G
+    image: qbittorrentofficial/qbittorrent-nox:5.1.2-2
+    container_name: qbit-9088
+    restart: unless-stopped
+    ports:
+      - 9088:9088
+    environment:
+      - PGID=1000
+      - PUID=1000
+      - QBT_EULA=accept
+      - QBT_VERSION=latest
+      - QBT_WEBUI_PORT=9088
+      - TZ=Europe/Stockholm
+    tty: true
+    volumes:
+      - /home/lestar/_volumes/qbit-9088/configs:/config
+      - /media/downloads:/downloads
+      - /home/lestar/_volumes/vuetorrent/data:/vuetorrent
+      - /media/deluge_itconfig_downloads:/deluge_itconfig_downloads
+      - /media/wally:/wally
+      - /media/ops:/ops
+
+  cross-seed:
+    image: ghcr.io/cross-seed/cross-seed:6.13.7
+    container_name: cross-seed
+    # Must match qbit-9089 file ownership (PUID/PGID 1000) so hardlinks/injection work
+    user: "1000:1000"
+    restart: unless-stopped
+    ports:
+      - 2468:2468
+    environment:
+      # Vaultwarden item: torrent-clients-eva00
+      - CROSS_SEED_TORZNAB_URL=${CROSS_SEED_TORZNAB_URL}
+      - CROSS_SEED_QBIT_URL=${CROSS_SEED_QBIT_URL}
+    volumes:
+      - /home/lestar/_volumes/cross-seed:/config
+      # Templated config (no secrets) overlays the host copy.
+      - ./cross-seed.config.js:/config/config.js:ro
+      # Mirror qbit-9089's paths exactly so cross-seed can access client-reported save paths
+      - /media/downloads:/downloads
+      - /media:/media
+    command: daemon
+    depends_on:
+      - qbit-9089
