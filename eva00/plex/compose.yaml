@@ -1,0 +1,28 @@
+services:
+  plex:
+    runtime: nvidia
+    deploy:
+      resources:
+        limits:
+          cpus: '5.0'
+          memory: 12G
+    image: lscr.io/linuxserver/plex:1.43.2.10687-563d026ea-ls307
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      # Plex itself only updates through the image tag.
+      - VERSION=docker
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
+    volumes:
+      - /home/lestar/_volumes/plex/config:/config
+      - /media:/media
+    healthcheck:
+      test: ["CMD", "test", "-d", "/media/downloads"]
+      interval: 1m
+      timeout: 5s
+      retries: 1
+      start_period: 30s
+    restart: unless-stopped
