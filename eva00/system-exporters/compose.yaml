@@ -1,0 +1,102 @@
+services:
+  # Node Exporter - System metrics (CPU, RAM, disk, network)
+  # dex migrated to gitops/eva00/dex-exporter
+  node-exporter:
+    image: prom/node-exporter:v1.9.1
+    container_name: node-exporter
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+      - 9100:9100
+
+  # Cadvisor - Container resource metrics
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.55.1
+    container_name: cadvisor
+    restart: unless-stopped
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - 8082:8080
+    command:
+      - "--disable_metrics=cpu_topology,disk,diskIO,memory_numa,network,tcp,udp,percpu,sched,process,hugetlb,referenced_memory,resctrl"
+      - "--docker_only=true"
+
+  missing-container-metrics:
+    image: ghcr.io/liamniou/missing-container-metrics:8e40c3
+    container_name: missing-container-metrics
+    restart: unless-stopped
+    ports:
+      - 3001:3001
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - CONTAINERD=false
+
+  process-exporter:
+    image: ncabatoff/process-exporter:0.8.7
+    container_name: process-exporter
+    restart: unless-stopped
+    privileged: true
+    volumes:
+      - /proc:/host/proc:ro
+      - ./process-exporter-config.yml:/config/process-exporter-config.yml
+    command:
+      - '--procfs=/host/proc'
+      - '--config.path=/config/process-exporter-config.yml'
+    ports:
+      - 9256:9256
+
+  smartctl-exporter:
+    image: prometheuscommunity/smartctl-exporter:v0.14.0
+    container_name: smartctl-exporter
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - 9633:9633
+    volumes:
+      - /dev:/dev:ro
+
+  exportarr_prowlarr:
+    image: ghcr.io/onedr0p/exportarr:v2.3.0
+    container_name: exportarr_prowlarr
+    restart: unless-stopped
+    ports:
+      - 8244:8244
+    environment:
+      - TZ=Europe/Stockholm
+      - PROWLARR__BACKFILL=true
+      - PORT=8244
+      - URL=http://192.168.0.237:9696
+      # Vaultwarden item: system-exporters-eva00
+      - API_KEY=${PROWLARR_API_KEY}
+    command:
+      - prowlarr
+
+  exportarr_bazarr:
+    image: ghcr.io/onedr0p/exportarr:v2.3.0
+    container_name: exportarr_bazarr
+    restart: unless-stopped
+    ports:
+      - 8245:8245
+    environment:
+      - TZ=Europe/Stockholm
+      - PORT=8245
+      - URL=http://192.168.0.237:6767
+      - API_KEY=${BAZARR_API_KEY}
+      # Skip the per-episode subtitle walk (slow); missing totals still come
+      # from Bazarr's cheap badges endpoint.
+      - DISABLE_EPISODE_METRICS=true
+    command:
+      - bazarr

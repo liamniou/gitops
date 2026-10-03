@@ -1,0 +1,13 @@
+services:
+  qpanel:
+    # Built by GitHub Actions in github.com/leo-stotch/qpanel (docker-multiarch workflow).
+    image: ghcr.io/leo-stotch/qpanel:sha-74407cd
+    container_name: qpanel
+    ports:
+      - "8081:5001"
+    volumes:
+      - /home/lestar/_volumes/qpanel/data:/app/data
+      - /media/downloads/:/downloads:rw
+    environment:
+      - TZ=Europe/Stockholm
+    restart: unless-stopped

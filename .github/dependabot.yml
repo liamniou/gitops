@@ -429,3 +429,36 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/qpanel/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(qpanel)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/prometheus-grafana/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(prometheus-grafana)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/system-exporters/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(system-exporters)"
+    labels:
+      - "dependencies"
+      - "docker"
