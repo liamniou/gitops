@@ -5,7 +5,7 @@ services:
         limits:
           cpus: "2.0"
           memory: 8G
-    image: qbittorrentofficial/qbittorrent-nox:5.1.2-2
+    image: qbittorrentofficial/qbittorrent-nox:5.2.4-1
     container_name: qbit-9089
     restart: unless-stopped
     ports:
@@ -30,7 +30,7 @@ services:
         limits:
           cpus: "1.0"
           memory: 2G
-    image: qbittorrentofficial/qbittorrent-nox:5.1.2-2
+    image: qbittorrentofficial/qbittorrent-nox:5.2.4-1
     container_name: qbit-9088
     restart: unless-stopped
     ports:
