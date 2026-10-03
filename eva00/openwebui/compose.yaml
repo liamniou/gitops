@@ -13,7 +13,7 @@ services:
       - copilot-data:/root/.local/share/copilot-api
 
   open-webui:
-    image: ghcr.io/open-webui/open-webui:main@sha256:6a773e5c3a246b65cbe74ce942b294292c0e5f81c138f703d111bc162f7d7c3d
+    image: ghcr.io/open-webui/open-webui:main@sha256:8b432fe0a65b91116afc7961365c6cca5379cc923171386a96691f3471f3cae9
     container_name: open-webui
     restart: unless-stopped
     depends_on:
