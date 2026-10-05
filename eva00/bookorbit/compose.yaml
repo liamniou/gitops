@@ -59,7 +59,7 @@ services:
 
   postgres:
     container_name: bookorbit-db
-    image: pgvector/pgvector:0.8.6-pg18-bookworm
+    image: pgvector/pgvector:0.8.7-pg18-bookworm
     restart: unless-stopped
     environment:
       POSTGRES_USER: bookorbit
