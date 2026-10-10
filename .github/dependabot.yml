@@ -221,17 +221,6 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
-    directory: "/eva00/musicgrabber/"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-    open-pull-requests-limit: 5
-    commit-message:
-      prefix: "deps(musicgrabber)"
-    labels:
-      - "dependencies"
-      - "docker"
-  - package-ecosystem: "docker-compose"
     directory: "/eva00/slskd/"
     schedule:
       interval: "weekly"

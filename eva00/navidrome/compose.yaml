@@ -8,11 +8,7 @@ services:
     environment:
       - ND_SCANSCHEDULE=1h
       - ND_LOGLEVEL=info
-      # Import only MusicGrabber's M3Us, not the .m3u files bundled with album releases.
-      - ND_AUTOIMPORTPLAYLISTS=true
-      - ND_PLAYLISTSPATH=Playlists:Playlists/**
-      # MusicGrabber needs real file paths to write M3U entries for tracks already in the library.
-      - ND_SUBSONIC_DEFAULTREPORTREALPATH=true
+      - ND_AUTOIMPORTPLAYLISTS=false
     volumes:
       - /home/lestar/_volumes/navidrome/data:/data
       - /media/downloads/music:/music:ro
