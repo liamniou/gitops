@@ -1,6 +1,6 @@
 services:
   lingarr:
-    image: ghcr.io/lingarr-translate/lingarr:1.3.0
+    image: ghcr.io/lingarr-translate/lingarr:1.4.0
     container_name: lingarr
     restart: unless-stopped
     environment:
