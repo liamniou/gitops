@@ -10,7 +10,11 @@ services:
       PORT: "3000"
       TZ: Europe/Stockholm
       LOG_LEVEL: info
-      ALLOWED_ORIGINS: http://192.168.0.237:3011
+      APP_URL: https://trek.tokyo3.eu
+      ALLOWED_ORIGINS: https://trek.tokyo3.eu,http://192.168.0.237:3011
+      # Trust cloudflared's X-Forwarded-Proto so cookies are Secure over the tunnel;
+      # FORCE_HTTPS is left off to keep plain-HTTP LAN access working.
+      TRUST_PROXY: "1"
       # Vaultwarden item: trek-eva00
       ENCRYPTION_KEY: ${ENCRYPTION_KEY}
     volumes:
