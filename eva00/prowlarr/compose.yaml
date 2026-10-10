@@ -1,4 +1,14 @@
 services:
+  flaresolverr:
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=info
+      - TZ=Europe/Stockholm
+    image: ghcr.io/flaresolverr/flaresolverr:v3.5.2
+    ports:
+      - 8191:8191
+    restart: unless-stopped
+
   prowlarr:
     container_name: prowlarr
     environment:
