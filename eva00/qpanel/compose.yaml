@@ -1,7 +1,7 @@
 services:
   qpanel:
     # Built by GitHub Actions in github.com/leo-stotch/qpanel (docker-multiarch workflow).
-    image: ghcr.io/leo-stotch/qpanel:sha-74407cd
+    image: ghcr.io/leo-stotch/qpanel:sha-f8c8196
     container_name: qpanel
     ports:
       - "8081:5001"
