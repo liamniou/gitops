@@ -29,7 +29,7 @@ services:
   # exporter only issues SELECTs (PRAGMA query_only = ON).
   tautulli_buffer_exporter:
     # Built from github.com/liamniou/tautulli-buffer-exporter.
-    image: ghcr.io/liamniou/tautulli-buffer-exporter:sha-b8c460f
+    image: ghcr.io/liamniou/tautulli-buffer-exporter:latest@sha256:9ddc53ceadf48c2c843122f7915d6f690983d865d5880b49ae2ac6a581595283
     container_name: tautulli_buffer_exporter
     restart: unless-stopped
     network_mode: host

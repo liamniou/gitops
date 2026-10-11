@@ -1,7 +1,7 @@
 services:
   bot:
     mem_limit: 112m # peak 7d +20%
-    image: ghcr.io/liamniou/dl-yt-from-rss-bot-bot:latest
+    image: ghcr.io/liamniou/dl-yt-from-rss-bot-bot:latest@sha256:91ea1a45cbd5daa97518bdf3225cb97a9fe2423191f7cca0c53395fa6b880d66
     container_name: dl-from-rss-bot
     restart: unless-stopped
     network_mode: host
@@ -14,7 +14,7 @@ services:
 
   checker:
     mem_limit: 64m
-    image: ghcr.io/liamniou/dl-yt-from-rss-bot-checker:latest
+    image: ghcr.io/liamniou/dl-yt-from-rss-bot-checker:latest@sha256:773bb39c7ac771b4c7b9a316d9802eb79045412c23f4ce5990982381d78a0225
     container_name: dl-from-rss-checker
     restart: unless-stopped
     network_mode: host
@@ -37,7 +37,7 @@ services:
 
   prefetch:
     mem_limit: 64m
-    image: ghcr.io/liamniou/dl-yt-from-rss-bot-prefetch:latest
+    image: ghcr.io/liamniou/dl-yt-from-rss-bot-prefetch:latest@sha256:86ec1940d0ac86889f32f0dd3b56bbe1973e52a1cad6958e5f918f02c9402f6b
     container_name: dl-from-rss-prefetch
     restart: unless-stopped
     network_mode: host

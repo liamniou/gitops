@@ -1,7 +1,7 @@
 services:
   plex-arr-date-sync:
     # Built from github.com/liamniou/plex-arr-date-sync.
-    image: ghcr.io/liamniou/plex-arr-date-sync:sha-3fde492
+    image: ghcr.io/liamniou/plex-arr-date-sync:latest@sha256:3b385210eb3707cc7a091affb31542eadc5b475ef3e44642b31e7934f5ce4669
     container_name: plex-arr-date-sync
     restart: unless-stopped
     environment:

@@ -1,7 +1,7 @@
 services:
   dex:
     mem_limit: 64m
-    image: spx01/dex:latest
+    image: spx01/dex:0.0.65
     container_name: dex
     restart: unless-stopped
     volumes:

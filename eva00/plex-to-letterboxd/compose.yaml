@@ -5,7 +5,7 @@
 services:
   plex-to-letterboxd:
     # Built from github.com/liamniou/plex-to-letterboxd.
-    image: ghcr.io/liamniou/plex-to-letterboxd:sha-fc3be22
+    image: ghcr.io/liamniou/plex-to-letterboxd:latest@sha256:545ada1f130e9dc90ce68fd0cadb0e5804b3221bd7715a923734322eefbbecfa
     container_name: plex-to-letterboxd
     restart: unless-stopped
     command: tail -f /dev/null

@@ -2,7 +2,7 @@ services:
   immich-server:
     mem_limit: 640m # peak 7d +20%
     container_name: immich_server
-    image: ghcr.io/immich-app/immich-server:release
+    image: ghcr.io/immich-app/immich-server:v2.4.1
     volumes:
       - /media/photos:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -23,7 +23,7 @@ services:
   immich-machine-learning:
     mem_limit: 2048m # raised: was OOM-killed
     container_name: immich_machine_learning
-    image: ghcr.io/immich-app/immich-machine-learning:release
+    image: ghcr.io/immich-app/immich-machine-learning:v2.5.6
     volumes:
       - /home/lestar/_volumes/immich/model-cache:/cache
     environment:

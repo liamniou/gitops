@@ -1,7 +1,7 @@
 services:
   komoot-to-gpx-bot:
     mem_limit: 64m
-    image: ghcr.io/liamniou/komoot-to-gpx-bot:latest
+    image: ghcr.io/liamniou/komoot-to-gpx-bot:latest@sha256:2d150122afa88fd2bbe9809fe3f043ff4a56a382a2f99cf9fd75242038093570
     container_name: komoot-to-gpx-bot
     restart: unless-stopped
     environment:

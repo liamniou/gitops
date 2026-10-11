@@ -2,7 +2,7 @@ services:
   # Standalone GitHub Copilot -> OpenAI-compatible proxy (no VS Code needed).
   copilot-api:
     # Built from github.com/liamniou/copilot-api (fork of ericc-ch/copilot-api at v0.7.0).
-    image: ghcr.io/liamniou/copilot-api:sha-4a7a024
+    image: ghcr.io/liamniou/copilot-api:latest@sha256:dde6f91c56462fa61dc1a887c2d9a18cd41f4c12baaa7a28273861296a1189f1
     container_name: copilot-api
     restart: unless-stopped
     ports:

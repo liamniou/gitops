@@ -19,7 +19,7 @@ services:
         - /mnt
       timeout: 10s
     # Built from github.com/liamniou/arr-ru-patches (linuxserver/sonarr + Sonarr.RuntimePatches.dll).
-    image: ghcr.io/liamniou/sonarr-ru:sha-4e6c994
+    image: ghcr.io/liamniou/sonarr-ru:latest@sha256:fa7b83866e9db8121385e7440f24e62c5af722635fe990d656dad947d27f8eae
     ports:
       - 8990:8989
     restart: unless-stopped
