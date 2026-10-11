@@ -1,7 +1,7 @@
 services:
   bus-exporter:
     mem_limit: 64m
-    image: ghcr.io/liamniou/bus-exporter:latest@sha256:852f9f03bba2bce06a9146014aa8545ad4956de78531c854f2e5880f9f75b99b
+    image: ghcr.io/liamniou/bus-exporter:latest@sha256:ac565727c4fce4c35c5036d738e609be28e9f1cb7ad397ecba320caf901b28a4
     container_name: bus-exporter
     restart: unless-stopped
     ports:
