@@ -33,7 +33,7 @@ services:
 
   poll-notifier:
     mem_limit: 64m
-    image: ghcr.io/liamniou/orpheus-poll-to-playlist-notifier:latest@sha256:854eae622b946cf6f51404f8b81f07f2c3492d1105acd1ea260793feaa9cb469
+    image: ghcr.io/liamniou/orpheus-poll-to-playlist-notifier:latest@sha256:5f7912c19984d9b48d3a5580150a4569af7173347c7bc47cc39161f75c409dca
     container_name: orpheus-poll-notifier
     profiles: ["disabled"]  # remove to enable
     restart: unless-stopped
