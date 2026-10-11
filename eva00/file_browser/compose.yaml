@@ -1,7 +1,7 @@
 services:
   filebrowser:
     mem_limit: 64m
-    image: filebrowser/filebrowser:v2.63.5
+    image: filebrowser/filebrowser:v2.63.23
     container_name: filebrowser
     restart: unless-stopped
     ports:
