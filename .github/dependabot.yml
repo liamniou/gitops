@@ -880,6 +880,17 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/wrapper-manager/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(wrapper-manager)"
+    labels:
+      - "dependencies"
+      - "docker"
   - package-ecosystem: "docker"
     directory: "/eva00/kometa/camoufox-proxy/"
     schedule:

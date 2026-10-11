@@ -1,0 +1,21 @@
+services:
+  wrapper-manager:
+    mem_limit: 256m # initial estimate, retune after 7d
+    # Built from github.com/liamniou/wrapper-manager (fork of WorldObservationLog/wrapper-manager).
+    image: ghcr.io/liamniou/wrapper-manager:latest@sha256:c84b38466d996b267fb501f0f02883714ec240980ac3a3e7a71e9a98fde9bd8c
+    container_name: wrapper-manager
+    restart: unless-stopped
+    command: ["--host", "0.0.0.0", "--port", "8080", "--mirror", "false"]
+    ports:
+      # amusic-web and AppleMusicDecrypt reach it at 192.168.0.237:8080
+      - "8080:8080"
+    volumes:
+      # Apple account login + wrapper instances. The Apple ID must be logged in
+      # again after a restart (amusic-web: click the "wrapper" pill).
+      - data:/root/data
+
+volumes:
+  data:
+    # Volume created by the pre-gitops stack; amusic-web mounts it read-only.
+    name: wrapper-manager_data
+    external: true
