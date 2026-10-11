@@ -12,7 +12,7 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
-    directory: "/eva01/bazarr/"
+    directory: "/eva00/bazarr/"
     schedule:
       interval: "weekly"
       day: "monday"
@@ -462,3 +462,442 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/alertmanager/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(alertmanager)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/alloy/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(alloy)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/apprise/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(apprise)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/audiomuse-ai/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(audiomuse-ai)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/autobrr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(autobrr)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/calibre-web/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(calibre-web)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/cloudflared/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(cloudflared)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/couchdb/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(couchdb)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/dex-exporter/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(dex-exporter)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/dl-from-rss/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(dl-from-rss)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/dockhand/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(dockhand)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/eavesdrop/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(eavesdrop)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/exporters/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(exporters)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/fetch_ratio/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(fetch_ratio)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/file_browser/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(file_browser)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/grafana-screenshot/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(grafana-screenshot)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/hawser/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(hawser)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/homeflix-exporter/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(homeflix-exporter)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/immich/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(immich)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/invoice-qr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(invoice-qr)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/kometa/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(kometa)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/komoot-to-gpx-bot/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(komoot-to-gpx-bot)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/letterboxd-list-radarr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(letterboxd-list-radarr)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/loki/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(loki)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/maintainerr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(maintainerr)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/media-healthcheck/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(media-healthcheck)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/metube/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(metube)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/metube-podcast-feed/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(metube-podcast-feed)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/navidrome/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(navidrome)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/nvidia-gpu-exporter/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(nvidia-gpu-exporter)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/ofelia/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(ofelia)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/orpheus-poll-to-playlist/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(orpheus-poll-to-playlist)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/outline/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(outline)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/overseerr/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(overseerr)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/radarr-ru/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(radarr-ru)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/sonarr-ru/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(sonarr-ru)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/trek/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(trek)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/volley-matches/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(volley-matches)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker"
+    directory: "/eva00/kometa/camoufox-proxy/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(camoufox-proxy)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "pip"
+    directory: "/eva00/kometa/camoufox-proxy/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(camoufox-proxy)"
+    labels:
+      - "dependencies"
