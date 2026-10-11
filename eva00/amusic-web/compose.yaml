@@ -1,0 +1,32 @@
+services:
+  amusic-web:
+    mem_limit: 1g # initial estimate (rips + ffmpeg conversions), retune after 7d
+    # Built from github.com/liamniou/amusic-web (bundles liamniou/AppleMusicDecrypt v2 as a submodule).
+    image: ghcr.io/liamniou/amusic-web:latest@sha256:7d19b580d5b114aa5d9a6c3f6303788fd1feaa5ed6f840ac3bc63010ad40265b
+    container_name: amusic-web
+    restart: unless-stopped
+    # Matches ownership of /media/downloads/music so Navidrome and the scripts can manage the files
+    user: "1000:1000"
+    ports:
+      - "4534:8000"
+    environment:
+      - TZ=Europe/Stockholm
+      - NAVIDROME_URL=http://192.168.0.237:4533
+      - NAVIDROME_PUBLIC_URL=https://music.tokyo3.eu
+      # Search uses the wrapper-manager account's region; this is only the fallback when it's offline
+      - APPLE_STOREFRONT=tr
+      # Login uses Navidrome accounts; set to true to let non-admin Navidrome users queue downloads
+      - ALLOW_NON_ADMIN=false
+    volumes:
+      # AppleMusicDecrypt config (wrapper-manager address, naming formats, codec priority)
+      - /home/lestar/_volumes/amusic-web/config.toml:/amd/config.toml:ro
+      - /home/lestar/_volumes/amusic-web/data:/data
+      # Same folder Navidrome serves as /music
+      - /media/downloads/music:/music
+      # wrapper-manager data (read-only): its Apple account token resolves music.apple.com/library/... links
+      - wrapper-manager_data:/wm:ro
+
+volumes:
+  wrapper-manager_data:
+    # Owned by the eva00/wrapper-manager stack.
+    external: true

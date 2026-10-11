@@ -891,6 +891,17 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/amusic-web/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(amusic-web)"
+    labels:
+      - "dependencies"
+      - "docker"
   - package-ecosystem: "docker"
     directory: "/eva00/kometa/camoufox-proxy/"
     schedule:
