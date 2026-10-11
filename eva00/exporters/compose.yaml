@@ -12,7 +12,7 @@ services:
 
   weather-exporter:
     mem_limit: 64m
-    image: ghcr.io/liamniou/weather-exporter:latest@sha256:9a8f9ec42980a0d2d1c786b1c397016e742cbd0f4d0a17d4db4c5f807720b2ea
+    image: ghcr.io/liamniou/weather-exporter:latest@sha256:3a0f475296e5fc41bea4848ed5b7cdd77c169f4bed06eea618c6a632ae8a572c
     container_name: weather-exporter
     restart: unless-stopped
     ports:
