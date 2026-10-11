@@ -1,7 +1,7 @@
 services:
   orpheus-poll:
     mem_limit: 112m # peak 7d +20%
-    image: ghcr.io/liamniou/orpheus-poll-to-playlist:latest@sha256:d44957c31cf856213ead980bd7c638f43f24e618d6b5e5909ac554195daf12cb
+    image: ghcr.io/liamniou/orpheus-poll-to-playlist:latest@sha256:4f6dc1c5376657535670c4bbe2bfa269952f968b812c84ed37f46ae327806ee9
     container_name: orpheus-poll-to-playlist
     profiles: ["disabled"]  # remove to enable
     restart: unless-stopped
