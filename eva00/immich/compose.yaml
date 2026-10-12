@@ -2,7 +2,7 @@ services:
   immich-server:
     mem_limit: 640m # peak 7d +20%
     container_name: immich_server
-    image: ghcr.io/immich-app/immich-server:v3.3.1
+    image: ghcr.io/immich-app/immich-server:v2.5.6
     volumes:
       - /media/photos:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -41,7 +41,8 @@ services:
   database:
     mem_limit: 176m # peak 7d +20%
     container_name: immich_postgres
-    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0
+    # Includes VectorChord + pgvecto.rs so Immich can migrate off pgvecto.rs (removed in v3).
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
@@ -57,10 +58,6 @@ services:
     command:
       [
         "postgres",
-        "-c",
-        "shared_preload_libraries=vectors.so",
-        "-c",
-        'search_path="$$user", public, vectors',
         "-c",
         "logging_collector=on",
         "-c",
