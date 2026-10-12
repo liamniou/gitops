@@ -33,7 +33,7 @@ services:
   redis:
     mem_limit: 64m
     container_name: immich_redis
-    image: docker.io/redis:6.2-alpine
+    image: docker.io/redis:8.10-alpine
     healthcheck:
       test: redis-cli ping || exit 1
     restart: unless-stopped
