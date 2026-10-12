@@ -2,7 +2,7 @@ services:
   immich-server:
     mem_limit: 640m # peak 7d +20%
     container_name: immich_server
-    image: ghcr.io/immich-app/immich-server:v2.4.1
+    image: ghcr.io/immich-app/immich-server:v3.3.1
     volumes:
       - /media/photos:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
