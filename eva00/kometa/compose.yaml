@@ -29,7 +29,7 @@ services:
       - camoufox-proxy
     labels:
       ofelia.enabled: "true"
-      ofelia.job-exec.kometa-sync.schedule: "@every 6h"
+      ofelia.job-exec.kometa-sync.schedule: "@daily"
       # Refresh Overseerr request collections first, then run Kometa.
       # Uses ';' so Kometa still runs (with the last good files) if the refresh fails.
       ofelia.job-exec.kometa-sync.command: "sh -c 'python3 /config/scripts/gen_overseerr_requests.py; python3 kometa.py --run'"
