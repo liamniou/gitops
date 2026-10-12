@@ -59,6 +59,8 @@ services:
       [
         "postgres",
         "-c",
+        "config_file=/etc/postgresql/postgresql.conf",
+        "-c",
         "logging_collector=on",
         "-c",
         "max_wal_size=2GB",
