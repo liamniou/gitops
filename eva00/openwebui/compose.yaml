@@ -11,7 +11,13 @@ services:
     volumes:
       # Persists the GitHub token so auth survives restarts.
       - copilot-data:/root/.local/share/copilot-api
-
+    configs:
+      # Bun.serve's default 10s idle timeout drops streams that go quiet mid-response
+      # (long tool-call arguments), e.g. Omnara agents. bunfig.toml preloads a shim that disables it.
+      - source: copilot-no-idle-timeout
+        target: /app/no-idle-timeout.js
+      - source: copilot-bunfig
+        target: /app/bunfig.toml
   open-webui:
     image: ghcr.io/open-webui/open-webui:main@sha256:6a773e5c3a246b65cbe74ce942b294292c0e5f81c138f703d111bc162f7d7c3d
     container_name: open-webui
@@ -31,3 +37,12 @@ services:
 volumes:
   copilot-data:
   open-webui:
+
+configs:
+  copilot-no-idle-timeout:
+    content: |
+      const serve = Bun.serve;
+      Bun.serve = (options) => serve({ ...options, idleTimeout: 0 });
+  copilot-bunfig:
+    content: |
+      preload = ["./no-idle-timeout.js"]
