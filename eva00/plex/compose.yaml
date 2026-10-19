@@ -6,7 +6,7 @@ services:
         limits:
           cpus: '5.0'
           memory: 12G
-    image: lscr.io/linuxserver/plex:1.43.2.10687-563d026ea-ls307
+    image: lscr.io/linuxserver/plex:1.43.4.10903-e5521bd8c-ls328
     container_name: plex
     network_mode: host
     environment:
