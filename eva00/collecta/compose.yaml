@@ -1,11 +1,11 @@
 services:
   collecta:
     # Built from github.com/liamniou/collecta.
-    image: ghcr.io/liamniou/collecta:latest@sha256:b8c80347ca75c19e545504029345b4c60f332d6b67f6133e56b6f000fc9079df
+    image: ghcr.io/liamniou/collecta:latest@sha256:8c05a72a135f55de337bde9eb945e4aff8cd0a41c9f16136f7fbb5856c7fbb3a
     container_name: collecta
     environment:
       LLM_BASE_URL: http://192.168.0.237:4141/v1
-      LLM_MODEL: gemini-3.7-flash
+      LLM_MODEL: gemini-3.8-flash
       WHISPER_ASR_URL: http://192.168.0.237:9000
       RADARR_URL: http://192.168.0.237:7878
       RADARR_WEB_URL: https://radarr.tokyo3.eu
