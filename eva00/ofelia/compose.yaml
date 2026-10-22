@@ -1,7 +1,7 @@
 services:
   ofelia:
     mem_limit: 96m # peak 7d +20%
-    image: mcuadros/ofelia:0.3.21
+    image: mcuadros/ofelia:0.3.22
     container_name: ofelia-scheduler
     restart: unless-stopped
     volumes:
