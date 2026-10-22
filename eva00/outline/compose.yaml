@@ -1,7 +1,7 @@
 services:
   outline:
     mem_limit: 816m # peak 7d +20%
-    image: outlinewiki/outline:1.6.0
+    image: outlinewiki/outline:1.11.0
     container_name: outline
     restart: unless-stopped
     ports:
