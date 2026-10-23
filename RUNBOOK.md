@@ -148,8 +148,11 @@ docker image prune -f
 
 - **Third-party images**: pin to specific semver, e.g. `postgres:14.23`,
   `cloudflare/cloudflared:2026.5.2`, `koenkk/zigbee2mqtt:2.10.1`
-- **Own GHCR images** that only publish `:latest`: pin with immutable digest
-  `image:latest@sha256:<digest>` — Dependabot updates the digest
+- **Own GHCR images**: pin the build hash tag and digest,
+  `image:sha-<short>@sha256:<digest>` (see `eva01/socials-to-telegram`).
+  Do not use `:latest@sha256` — Dependabot then opens "latest to latest" PRs.
+  Publish `type=sha,prefix=sha-,format=short` from the image repo. Dependabot
+  will not bump `sha-` tags; update the pin in a commit when a new hash is published.
 - **Never** use `:latest`, `:stable`, `:7-alpine` (major-only) or no tag
 
 Resolve current latest semver for a Docker Hub image:

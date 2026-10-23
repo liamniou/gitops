@@ -20,7 +20,8 @@ services:
         - /mnt
       timeout: 10s
     # Built from github.com/liamniou/arr-ru-patches (linuxserver/radarr + /patch hook DLLs).
-    image: ghcr.io/liamniou/radarr-ru:latest@sha256:36306ed9e79c3686ff3883e26fe45533793bea6832c497fccce456370dd5d750
+    # Pin the sha- tag, not :latest — Dependabot titles digest-only bumps "latest to latest".
+    image: ghcr.io/liamniou/radarr-ru:sha-48d1814@sha256:6ad93f2647a80736552ae004b5c03b414d65a25a28d96cb161ae474989306416
     ports:
       - 7879:7878
     restart: unless-stopped

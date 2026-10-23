@@ -19,7 +19,8 @@ services:
         - /mnt
       timeout: 10s
     # Built from github.com/liamniou/arr-ru-patches (linuxserver/sonarr + Sonarr.RuntimePatches.dll).
-    image: ghcr.io/liamniou/sonarr-ru:latest@sha256:fa7b83866e9db8121385e7440f24e62c5af722635fe990d656dad947d27f8eae
+    # Pin the sha- tag, not :latest — Dependabot titles digest-only bumps "latest to latest".
+    image: ghcr.io/liamniou/sonarr-ru:sha-48d1814@sha256:38817b8dd382965e767c75c39fe852258578cf02ba77620f063d702486c67f55
     ports:
       - 8990:8989
     restart: unless-stopped
