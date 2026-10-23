@@ -2,7 +2,7 @@ services:
   # Node Exporter - System metrics (CPU, RAM, disk, network)
   # dex migrated to gitops/eva00/dex-exporter
   node-exporter:
-    image: prom/node-exporter:v1.9.1
+    image: prom/node-exporter:v1.12.1
     container_name: node-exporter
     restart: unless-stopped
     volumes:
