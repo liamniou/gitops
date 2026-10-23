@@ -1,6 +1,6 @@
 services:
   navidrome:
-    mem_limit: 240m # peak 7d +20%
+    mem_limit: 512m # idle ~30MB; library scans peak >230MB (OOM-looped at 240m)
     image: deluan/navidrome:0.64.2
     container_name: navidrome
     ports:
