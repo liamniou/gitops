@@ -19,7 +19,7 @@ services:
       - source: copilot-bunfig
         target: /app/bunfig.toml
   open-webui:
-    image: ghcr.io/open-webui/open-webui:main@sha256:6a773e5c3a246b65cbe74ce942b294292c0e5f81c138f703d111bc162f7d7c3d
+    image: ghcr.io/open-webui/open-webui:main@sha256:4e1dd31538187a4c5749b30880dbc8ae745b2827cf9016cbfd691b431199b230
     container_name: open-webui
     restart: unless-stopped
     depends_on:
