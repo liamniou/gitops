@@ -59,7 +59,7 @@ services:
       - 9256:9256
 
   smartctl-exporter:
-    image: prometheuscommunity/smartctl-exporter:v0.14.0
+    image: prometheuscommunity/smartctl-exporter:v0.15.0
     container_name: smartctl-exporter
     restart: unless-stopped
     privileged: true
