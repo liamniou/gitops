@@ -1,6 +1,6 @@
 services:
   grafana-screenshot:
-    image: ghcr.io/liamniou/grafana-screenshot:latest@sha256:7e8185ed519da86ece19f9a2f879cf88e71f0b990c0c4fd46a6722d8fabc4c74
+    image: ghcr.io/liamniou/grafana-screenshot:2026.10.23.3@sha256:a03331d0d83ef48829b26182437bdf79fb2f682b56f996f42b782c61b43d36ae
     container_name: grafana-screenshot
     restart: unless-stopped
     # Reap Chromium children left behind when Playwright screenshots time out.

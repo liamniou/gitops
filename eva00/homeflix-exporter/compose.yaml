@@ -1,7 +1,7 @@
 services:
   homeflix-exporter:
     mem_limit: 112m # peak 7d +20%
-    image: ghcr.io/liamniou/homeflix-exporter:latest@sha256:a8e0c00a8be029641b79c229a2dec0af67243c546690a574fa5deb3018d83d56
+    image: ghcr.io/liamniou/homeflix-exporter:2026.10.23.3@sha256:b36544566f7389212b55e5c04fcc757a63d7a07b98fcf38b98d07c4a66bcc55f
     container_name: homeflix-exporter
     restart: unless-stopped
     user: "1000:1000"

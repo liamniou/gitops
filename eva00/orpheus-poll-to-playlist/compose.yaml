@@ -1,7 +1,7 @@
 services:
   orpheus-poll:
     mem_limit: 112m # peak 7d +20%
-    image: ghcr.io/liamniou/orpheus-poll-to-playlist:latest@sha256:d44957c31cf856213ead980bd7c638f43f24e618d6b5e5909ac554195daf12cb
+    image: ghcr.io/liamniou/orpheus-poll-to-playlist:2026.10.23.24@sha256:463071d9bb2a5726e00b0f42360cefa9f6b0c476f6b517731616f18444ce7b21
     container_name: orpheus-poll-to-playlist
     profiles: ["disabled"]  # remove to enable
     restart: unless-stopped
@@ -33,7 +33,7 @@ services:
 
   poll-notifier:
     mem_limit: 64m
-    image: ghcr.io/liamniou/orpheus-poll-to-playlist-notifier:latest@sha256:854eae622b946cf6f51404f8b81f07f2c3492d1105acd1ea260793feaa9cb469
+    image: ghcr.io/liamniou/orpheus-poll-to-playlist-notifier:2026.10.23.24@sha256:521a46dcdf5fc892b5ae1cae96470e889852f635948bb342dafda213d10f3642
     container_name: orpheus-poll-notifier
     profiles: ["disabled"]  # remove to enable
     restart: unless-stopped

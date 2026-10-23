@@ -1,7 +1,7 @@
 services:
   fetch_ratio:
     mem_limit: 80m # peak 7d +20%
-    image: ghcr.io/liamniou/fetch_ratio:latest@sha256:9b05d73367c91351df721a085c716ff5f3f8564b792dc30f26295c28c86e2c0a
+    image: ghcr.io/liamniou/fetch_ratio:2026.10.23.3@sha256:a8670e001b600cb0510447ca6cd4da2385162682dc45a2ce95b6dea99db00c0d
     container_name: fetch_ratio
     restart: unless-stopped
     ports:
