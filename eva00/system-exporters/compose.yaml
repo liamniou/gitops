@@ -34,7 +34,7 @@ services:
       - "--docker_only=true"
 
   missing-container-metrics:
-    image: ghcr.io/liamniou/missing-container-metrics:8e40c3
+    image: ghcr.io/liamniou/missing-container-metrics:2026.10.23.23@sha256:508dd7eee37fe5a6f4b225183a446c0556457aa5c75526f438691d63861655ba
     container_name: missing-container-metrics
     restart: unless-stopped
     ports:

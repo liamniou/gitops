@@ -1,7 +1,7 @@
 services:
   web:
     mem_limit: 80m # peak 7d +20%
-    image: ghcr.io/liamniou/best-wines-in-sweden-web:latest@sha256:4169e4c6dd857f2683d137655cf4067a4cb1cf17e802b2da8fe42b8405ea68c7
+    image: ghcr.io/liamniou/best-wines-in-sweden-web:2026.10.23.3@sha256:901dba7c1528ba6014d87b3ee8e65243fd7f2a9089ef7f50d3076f8c9c76ff2c
     container_name: best_wines
     restart: unless-stopped
     ports:

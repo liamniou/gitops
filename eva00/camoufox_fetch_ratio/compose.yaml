@@ -3,7 +3,7 @@ services:
   ratio_exporter:
     container_name: ratio_exporter
     # Built from github.com/liamniou/camoufox_fetch_ratio.
-    image: ghcr.io/liamniou/camoufox_fetch_ratio:latest@sha256:cd3a7a9d864a7bcdbe8155f3fe574895af0ffae669cad323545a6ef9fe16a163
+    image: ghcr.io/liamniou/camoufox_fetch_ratio:2026.10.23.3@sha256:c7962dded3570d3e1078c9660b9ac42f9b96ed6f40856e6480cf290e4c2f0702
     mem_limit: 3008m  # avg 7d usage (~2.5GB) +20%; caps the memory leak (peaked ~8.9GB)
     restart: unless-stopped
     environment:

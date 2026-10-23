@@ -2,7 +2,7 @@ services:
   amusic-web:
     mem_limit: 1g # initial estimate (rips + ffmpeg conversions), retune after 7d
     # Built from github.com/liamniou/amusic-web (bundles liamniou/AppleMusicDecrypt v2 as a submodule).
-    image: ghcr.io/liamniou/amusic-web:latest@sha256:7d19b580d5b114aa5d9a6c3f6303788fd1feaa5ed6f840ac3bc63010ad40265b
+    image: ghcr.io/liamniou/amusic-web:2026.10.23.2@sha256:d27b24ab3d5c3917a074b8838cbb652071a380f7f56c4e6eccf9bbfef40fd918
     container_name: amusic-web
     restart: unless-stopped
     # Matches ownership of /media/downloads/music so Navidrome and the scripts can manage the files

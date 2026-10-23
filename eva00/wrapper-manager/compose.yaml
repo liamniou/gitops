@@ -2,7 +2,7 @@ services:
   wrapper-manager:
     mem_limit: 256m # initial estimate, retune after 7d
     # Built from github.com/liamniou/wrapper-manager (fork of WorldObservationLog/wrapper-manager).
-    image: ghcr.io/liamniou/wrapper-manager:latest@sha256:c84b38466d996b267fb501f0f02883714ec240980ac3a3e7a71e9a98fde9bd8c
+    image: ghcr.io/liamniou/wrapper-manager:2026.10.23.2@sha256:636d04659e3dfdd90d3e77153701e4ad2b51efaf67cbe58bacf908e2c9f7c263
     container_name: wrapper-manager
     restart: unless-stopped
     command: ["--host", "0.0.0.0", "--port", "8080", "--mirror", "false"]

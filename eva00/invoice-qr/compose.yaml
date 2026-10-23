@@ -1,7 +1,7 @@
 services:
   invoice-qr:
     mem_limit: 512m
-    image: ghcr.io/liamniou/invoice-qr:latest@sha256:8570fa40bafb11836b7a6d843e3186523c4db9812ee5606079cd5c777da698a2
+    image: ghcr.io/liamniou/invoice-qr:2026.10.23.5@sha256:48fbc30a8771cad71f7933492f8dde69881898369d8e1a5289cfc0a7543695e4
     container_name: invoice-qr
     restart: unless-stopped
     ports:
