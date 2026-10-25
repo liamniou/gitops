@@ -738,17 +738,6 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
-    directory: "/eva00/media-healthcheck/"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-    open-pull-requests-limit: 5
-    commit-message:
-      prefix: "deps(media-healthcheck)"
-    labels:
-      - "dependencies"
-      - "docker"
-  - package-ecosystem: "docker-compose"
     directory: "/eva00/metube/"
     schedule:
       interval: "weekly"
