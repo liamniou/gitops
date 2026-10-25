@@ -1,7 +1,7 @@
 services:
   bazarr:
     mem_limit: 6416m # peak 7d +20%
-    image: linuxserver/bazarr:1.5.6
+    image: linuxserver/bazarr:1.6.2
     container_name: bazarr
     restart: unless-stopped
     environment:
