@@ -42,7 +42,7 @@ services:
     mem_limit: 1g # must exceed shared_buffers (512MB); 176m OOM-killed v3 geodata import
     container_name: immich_postgres
     # Includes VectorChord + pgvecto.rs so Immich can migrate off pgvecto.rs (removed in v3).
-    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
+    image: ghcr.io/immich-app/postgres:15-vectorchord0.4.3-pgvectors0.2.0
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
