@@ -7,7 +7,7 @@
 services:
   plex-to-letterboxd:
     # Built from github.com/liamniou/plex-to-letterboxd.
-    image: ghcr.io/liamniou/plex-to-letterboxd:2026.10.25.5@sha256:750b1aa595139d42c51978288ea4ef005674d5ac24d30119148bdc2257f90566
+    image: ghcr.io/liamniou/plex-to-letterboxd:2026.10.25.6@sha256:086848ba00abd7f788440e27c75ce7fd876725c254215b3773bde7ef426f00b6
     container_name: plex-to-letterboxd
     restart: unless-stopped
     ports:
