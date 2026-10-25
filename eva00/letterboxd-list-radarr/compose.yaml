@@ -11,5 +11,5 @@ services:
       - redis
   redis:
     mem_limit: 64m
-    image: redis:6.0
+    image: redis:8.10
     restart: unless-stopped
