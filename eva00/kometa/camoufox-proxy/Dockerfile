@@ -1,4 +1,4 @@
-FROM python:3.12-slim-bookworm
+FROM python:3.14-slim-bookworm
 
 # Firefox runtime libraries needed by Camoufox
 RUN apt-get update && \
