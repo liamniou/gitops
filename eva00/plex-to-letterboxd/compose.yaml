@@ -7,7 +7,7 @@
 services:
   plex-to-letterboxd:
     # Built from github.com/liamniou/plex-to-letterboxd.
-    image: ghcr.io/liamniou/plex-to-letterboxd:2026.10.25.6@sha256:086848ba00abd7f788440e27c75ce7fd876725c254215b3773bde7ef426f00b6
+    image: ghcr.io/liamniou/plex-to-letterboxd:2026.10.25.7@sha256:9fad0f4d2ca780b86ff0aa5877fd85c1c1c725868380ca885cc2477a4c220e38
     container_name: plex-to-letterboxd
     restart: unless-stopped
     ports:
@@ -15,6 +15,7 @@ services:
     environment:
       - TZ=Europe/Stockholm
       - PLEX_URL=http://192.168.0.237:32400
+      - PLEX_PUBLIC_URL=https://plex.tokyo3.eu
       - PLEX_USER=
       - PLEX_LIBRARY=Films
       - MAX_RETRIES=3
