@@ -1,7 +1,7 @@
 services:
   profilarr:
     mem_limit: 128m # peak 14d +25%
-    image: santiagosayshey/profilarr:v1.1.4
+    image: santiagosayshey/profilarr:v1.1.5
     container_name: profilarr
     ports:
       - 6868:6868
