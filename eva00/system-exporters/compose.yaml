@@ -3,7 +3,7 @@ services:
   # dex migrated to gitops/eva00/dex-exporter
   node-exporter:
     mem_limit: 64m # peak 14d +25%
-    image: prom/node-exporter:v1.9.1
+    image: prom/node-exporter:v1.12.1
     container_name: node-exporter
     restart: unless-stopped
     volumes:
