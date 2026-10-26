@@ -2,6 +2,7 @@ services:
   # Node Exporter - System metrics (CPU, RAM, disk, network)
   # dex migrated to gitops/eva00/dex-exporter
   node-exporter:
+    mem_limit: 64m # peak 14d +25%
     image: prom/node-exporter:v1.9.1
     container_name: node-exporter
     restart: unless-stopped
@@ -19,6 +20,7 @@ services:
 
   # Cadvisor - Container resource metrics
   cadvisor:
+    mem_limit: 512m # peak 14d +25%
     image: gcr.io/cadvisor/cadvisor:v0.55.1
     container_name: cadvisor
     restart: unless-stopped
@@ -34,6 +36,7 @@ services:
       - "--docker_only=true"
 
   missing-container-metrics:
+    mem_limit: 64m # peak 14d +25%
     image: ghcr.io/liamniou/missing-container-metrics:2026.10.23.23@sha256:508dd7eee37fe5a6f4b225183a446c0556457aa5c75526f438691d63861655ba
     container_name: missing-container-metrics
     restart: unless-stopped
@@ -45,6 +48,7 @@ services:
       - CONTAINERD=false
 
   process-exporter:
+    mem_limit: 144m # peak 14d +25%
     image: ncabatoff/process-exporter:0.8.7
     container_name: process-exporter
     restart: unless-stopped
@@ -59,6 +63,7 @@ services:
       - 9256:9256
 
   smartctl-exporter:
+    mem_limit: 64m # peak 14d +25%
     image: prometheuscommunity/smartctl-exporter:v0.14.0
     container_name: smartctl-exporter
     restart: unless-stopped
@@ -69,6 +74,7 @@ services:
       - /dev:/dev:ro
 
   exportarr_prowlarr:
+    mem_limit: 64m # peak 14d +25%
     image: ghcr.io/onedr0p/exportarr:v2.3.0
     container_name: exportarr_prowlarr
     restart: unless-stopped
@@ -85,6 +91,7 @@ services:
       - prowlarr
 
   exportarr_bazarr:
+    mem_limit: 64m # peak 14d +25%
     image: ghcr.io/onedr0p/exportarr:v2.3.0
     container_name: exportarr_bazarr
     restart: unless-stopped

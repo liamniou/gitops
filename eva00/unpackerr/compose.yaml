@@ -1,5 +1,6 @@
 services:
   unpackerr:
+    mem_limit: 64m # peak 14d +25%
     container_name: unpackerr
     environment:
       - TZ=Europe/Stockholm

@@ -1,5 +1,6 @@
 services:
   sonarr-ru:
+    mem_limit: 272m # peak 14d +25%
     container_name: sonarr-ru
     environment:
       - PUID=1000

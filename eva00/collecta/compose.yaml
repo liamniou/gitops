@@ -1,5 +1,6 @@
 services:
   collecta:
+    mem_limit: 176m # peak 14d +25%
     # Built from github.com/liamniou/collecta.
     image: ghcr.io/liamniou/collecta:2026.10.23.16@sha256:81c58a9a5b1384be8b695e3ea4ea83ae3acc69db58bf3d55c3cb316e5d741ea4
     container_name: collecta

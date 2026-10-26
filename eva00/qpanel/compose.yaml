@@ -1,5 +1,6 @@
 services:
   qpanel:
+    mem_limit: 240m # peak 14d excl. 10-26 pagination-loop runaway +25%
     # Built by GitHub Actions in github.com/liamniou/qpanel (docker-multiarch workflow).
     image: ghcr.io/liamniou/qpanel:2026.10.26.10@sha256:296cd95addc8cc75c7261af43b2723dfe93e41d7876d401b48c996603c033a03
     container_name: qpanel

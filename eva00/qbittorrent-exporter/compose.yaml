@@ -1,6 +1,7 @@
 services:
   # Exporter for qbit-9088 (DHT Downloads - main client)
   qbit-exporter-9088:
+    mem_limit: 112m # peak 14d +25%
     # Built from github.com/liamniou/qbittorrent-exporter.
     image: ghcr.io/liamniou/qbittorrent-exporter:2026.10.23.2@sha256:e55821339085dd2b748415d40905e7971043ee6517c9a69d534e87ddac65a7ac
     container_name: qbit-exporter-9088
@@ -22,6 +23,7 @@ services:
 
   # Exporter for qbit-9089 (No DHT)
   qbit-exporter-9089:
+    mem_limit: 176m # peak 14d +25%
     image: ghcr.io/liamniou/qbittorrent-exporter:2026.10.23.2@sha256:e55821339085dd2b748415d40905e7971043ee6517c9a69d534e87ddac65a7ac
     container_name: qbit-exporter-9089
     restart: unless-stopped

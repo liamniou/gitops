@@ -1,5 +1,6 @@
 services:
   app:
+    mem_limit: 544m # peak 14d +25%
     image: mauriceboe/trek:4.3.3
     container_name: trek
     restart: unless-stopped

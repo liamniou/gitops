@@ -1,5 +1,6 @@
 services:
   subgen:
+    mem_limit: 9040m # peak 14d +25%
     image: mccloud/subgen:latest@sha256:2841515a3b409677669f0a10d77d49160bffb8111db91640fb33a4db06b3396c
     container_name: subgen
     restart: unless-stopped

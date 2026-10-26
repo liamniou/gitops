@@ -1,5 +1,6 @@
 services:
   flaresolverr:
+    mem_limit: 1568m # peak 14d +25%
     container_name: flaresolverr
     environment:
       - LOG_LEVEL=info
@@ -10,6 +11,7 @@ services:
     restart: unless-stopped
 
   prowlarr:
+    mem_limit: 800m # peak 14d +25%
     container_name: prowlarr
     environment:
       - PUID=1000

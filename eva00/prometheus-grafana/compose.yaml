@@ -3,6 +3,7 @@ services:
   # PROMETHEUS - Storage only (receives remote writes from Alloy, serves queries)
   # =============================================================================
   prometheus:
+    mem_limit: 480m # peak 14d +25%
     image: prom/prometheus:v3.8.1
     container_name: prometheus
     command:
@@ -22,6 +23,7 @@ services:
   # GRAFANA - Visualization
   # =============================================================================
   grafana:
+    mem_limit: 1344m # peak 14d +25%
     image: grafana/grafana:13.0.1-security-01
     container_name: grafana
     ports:

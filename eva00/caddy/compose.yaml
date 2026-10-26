@@ -1,5 +1,6 @@
 services:
   caddy:
+    mem_limit: 64m # peak 14d +25%
     image: caddy:2.11.4-alpine
     container_name: caddy
     ports:

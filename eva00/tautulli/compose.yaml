@@ -1,5 +1,6 @@
 services:
   tautulli:
+    mem_limit: 448m # peak 14d +25%
     container_name: tautulli
     environment:
       - TZ=Europe/Stockholm
@@ -11,6 +12,7 @@ services:
       - /media:/media
 
   tautulli_exporter:
+    mem_limit: 64m # peak 14d +25%
     image: nwalke/tautulli_exporter:v0.1.0
     container_name: tautulli_exporter
     restart: unless-stopped
@@ -28,6 +30,7 @@ services:
   # because SQLite WAL mode needs shared-memory locks even for readers; the
   # exporter only issues SELECTs (PRAGMA query_only = ON).
   tautulli_buffer_exporter:
+    mem_limit: 64m # peak 14d +25%
     # Built from github.com/liamniou/tautulli-buffer-exporter.
     image: ghcr.io/liamniou/tautulli-buffer-exporter:2026.10.23.2@sha256:f82b6acadcfef2fd865a749fe4c5d519425526800db0260b970d4f5f8a8a9efc
     container_name: tautulli_buffer_exporter

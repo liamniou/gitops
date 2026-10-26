@@ -1,5 +1,6 @@
 services:
   radarr-by:
+    mem_limit: 832m # peak 14d +25%
     container_name: radarr-by
     environment:
       - PUID=1000

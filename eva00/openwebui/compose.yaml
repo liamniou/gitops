@@ -1,6 +1,7 @@
 services:
   # Standalone GitHub Copilot -> OpenAI-compatible proxy (no VS Code needed).
   copilot-api:
+    mem_limit: 240m # peak 14d +25%
     # Built from github.com/liamniou/copilot-api (fork of ericc-ch/copilot-api at v0.7.0).
     image: ghcr.io/liamniou/copilot-api:2026.10.23.3@sha256:ad265c352d2aa7c8ef19f95c4daf0aedc8a25f707da5c6fd73806ce9bbf12497
     container_name: copilot-api
@@ -19,6 +20,7 @@ services:
       - source: copilot-bunfig
         target: /app/bunfig.toml
   open-webui:
+    mem_limit: 1072m # peak 14d +25%
     image: ghcr.io/open-webui/open-webui:main@sha256:6a773e5c3a246b65cbe74ce942b294292c0e5f81c138f703d111bc162f7d7c3d
     container_name: open-webui
     restart: unless-stopped

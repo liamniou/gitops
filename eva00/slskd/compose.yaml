@@ -1,5 +1,6 @@
 services:
   slskd:
+    mem_limit: 192m # peak 14d +25%
     image: slskd/slskd:0.26.1
     container_name: slskd
     ports:

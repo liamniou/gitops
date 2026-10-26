@@ -1,5 +1,6 @@
 services:
   plex-arr-date-sync:
+    mem_limit: 80m # peak 14d +25%
     # Built from github.com/liamniou/plex-arr-date-sync.
     image: ghcr.io/liamniou/plex-arr-date-sync:2026.10.23.3@sha256:7dc18ec9031d024362467c63c5baf48f222637cfad239cba6af67343c014c961
     container_name: plex-arr-date-sync

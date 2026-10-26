@@ -1,5 +1,6 @@
 services:
   whisper-asr:
+    mem_limit: 1264m # peak 14d +25%
     image: onerahmet/openai-whisper-asr-webservice:v1.10.0-gpu
     container_name: whisper-asr
     restart: unless-stopped
