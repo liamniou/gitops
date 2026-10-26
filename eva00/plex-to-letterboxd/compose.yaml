@@ -8,7 +8,7 @@ services:
   plex-to-letterboxd:
     mem_limit: 2608m # peak 14d +25%
     # Built from github.com/liamniou/plex-to-letterboxd.
-    image: ghcr.io/liamniou/plex-to-letterboxd:2026.10.25.7@sha256:9fad0f4d2ca780b86ff0aa5877fd85c1c1c725868380ca885cc2477a4c220e38
+    image: ghcr.io/liamniou/plex-to-letterboxd:2026.10.26.8@sha256:8da514daf0af49fdc54b4973606df92dffa4c5f9f3d5068584263f99f23ba2a0
     container_name: plex-to-letterboxd
     restart: unless-stopped
     ports:
