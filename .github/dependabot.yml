@@ -912,3 +912,14 @@ updates:
       prefix: "deps(camoufox-proxy)"
     labels:
       - "dependencies"
+  - package-ecosystem: "docker-compose"
+    directory: "/eva00/learn-swedish/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(learn-swedish)"
+    labels:
+      - "dependencies"
+      - "docker"

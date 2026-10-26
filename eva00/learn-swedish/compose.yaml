@@ -1,0 +1,18 @@
+# Swedish learning portal (flip cards, quizzes, spaced repetition) with server-side progress.
+# UI: http://192.168.0.237:7480  (no auth, LAN only)
+# Progress: /home/lestar/_volumes/learn-swedish/data/state.json (+ daily snapshots)
+
+services:
+  learn-swedish:
+    # Built from github.com/liamniou/learn-swedish.
+    image: ghcr.io/liamniou/learn-swedish:2026.10.26.1@sha256:0433c727a2ba6994456e0af48d122a6abd5d7d6efe6aa604953ad22b34c04253
+    container_name: learn-swedish
+    restart: unless-stopped
+    mem_limit: 128m
+    user: "1000:1000"
+    ports:
+      - "7480:8080"
+    environment:
+      - TZ=Europe/Stockholm
+    volumes:
+      - /home/lestar/_volumes/learn-swedish/data:/data
