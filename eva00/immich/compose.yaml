@@ -1,6 +1,6 @@
 services:
   immich-server:
-    mem_limit: 640m # peak 7d +20%
+    mem_limit: 1536m # raised: 640m was OOM-killed (memcg) during jobs
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:v3.3.3
     volumes:
