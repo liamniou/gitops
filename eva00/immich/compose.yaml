@@ -2,7 +2,7 @@ services:
   immich-server:
     mem_limit: 1536m # raised: 640m was OOM-killed (memcg) during jobs
     container_name: immich_server
-    image: ghcr.io/immich-app/immich-server:v3.3.3
+    image: ghcr.io/immich-app/immich-server:v3.3.5
     volumes:
       - /media/photos:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
