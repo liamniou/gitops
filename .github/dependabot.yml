@@ -1,6 +1,8 @@
 version: 2
 updates:
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/alloy/"
     schedule:
       interval: "weekly"
@@ -12,6 +14,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/bazarr/"
     schedule:
       interval: "weekly"
@@ -23,6 +27,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/best_wines/"
     schedule:
       interval: "weekly"
@@ -34,6 +40,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/cal-com/"
     schedule:
       interval: "weekly"
@@ -45,6 +53,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/cloudflare/"
     schedule:
       interval: "weekly"
@@ -56,6 +66,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/convertx/"
     schedule:
       interval: "weekly"
@@ -67,6 +79,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/dex-exporter/"
     schedule:
       interval: "weekly"
@@ -78,6 +92,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/exporters/"
     schedule:
       interval: "weekly"
@@ -89,6 +105,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/ghost/"
     schedule:
       interval: "weekly"
@@ -100,6 +118,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/hawser/"
     schedule:
       interval: "weekly"
@@ -111,6 +131,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/homeassistant/"
     schedule:
       interval: "weekly"
@@ -122,6 +144,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/mqtt/"
     schedule:
       interval: "weekly"
@@ -133,6 +157,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/rallly/"
     schedule:
       interval: "weekly"
@@ -144,6 +170,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/socials-to-telegram/"
     schedule:
       interval: "weekly"
@@ -155,6 +183,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/zigbee2mqtt/"
     schedule:
       interval: "weekly"
@@ -166,6 +196,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/qui/"
     schedule:
       interval: "weekly"
@@ -177,6 +209,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/crowbarr/"
     schedule:
       interval: "weekly"
@@ -188,6 +222,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/lingarr/"
     schedule:
       interval: "weekly"
@@ -199,6 +235,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/profilarr/"
     schedule:
       interval: "weekly"
@@ -210,6 +248,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/prowlarr/"
     schedule:
       interval: "weekly"
@@ -221,6 +261,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/slskd/"
     schedule:
       interval: "weekly"
@@ -232,6 +274,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/subgen/"
     schedule:
       interval: "weekly"
@@ -243,6 +287,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/unpackerr/"
     schedule:
       interval: "weekly"
@@ -254,6 +300,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/whisper-asr/"
     schedule:
       interval: "weekly"
@@ -265,6 +313,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/bookorbit/"
     schedule:
       interval: "weekly"
@@ -276,6 +326,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/radarr-by/"
     schedule:
       interval: "weekly"
@@ -287,6 +339,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/sonarr/"
     schedule:
       interval: "weekly"
@@ -298,6 +352,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/radarr/"
     schedule:
       interval: "weekly"
@@ -309,6 +365,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/caddy/"
     schedule:
       interval: "weekly"
@@ -320,6 +378,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/rsshub/"
     schedule:
       interval: "weekly"
@@ -331,6 +391,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/tautulli/"
     schedule:
       interval: "weekly"
@@ -342,6 +404,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/collecta/"
     schedule:
       interval: "weekly"
@@ -353,6 +417,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/plex-arr-date-sync/"
     schedule:
       interval: "weekly"
@@ -364,6 +430,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/qbittorrent-exporter/"
     schedule:
       interval: "weekly"
@@ -375,6 +443,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/plex-to-letterboxd/"
     schedule:
       interval: "weekly"
@@ -386,6 +456,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/camoufox_fetch_ratio/"
     schedule:
       interval: "weekly"
@@ -397,6 +469,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/plex/"
     schedule:
       interval: "weekly"
@@ -408,6 +482,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/openwebui/"
     schedule:
       interval: "weekly"
@@ -419,6 +495,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/torrent-clients/"
     schedule:
       interval: "weekly"
@@ -430,6 +508,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/qpanel/"
     schedule:
       interval: "weekly"
@@ -441,6 +521,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/prometheus-grafana/"
     schedule:
       interval: "weekly"
@@ -452,6 +534,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/system-exporters/"
     schedule:
       interval: "weekly"
@@ -463,6 +547,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/alertmanager/"
     schedule:
       interval: "weekly"
@@ -474,6 +560,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/alloy/"
     schedule:
       interval: "weekly"
@@ -485,6 +573,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/apprise/"
     schedule:
       interval: "weekly"
@@ -496,6 +586,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/audiomuse-ai/"
     schedule:
       interval: "weekly"
@@ -507,6 +599,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/autobrr/"
     schedule:
       interval: "weekly"
@@ -518,6 +612,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/calibre-web/"
     schedule:
       interval: "weekly"
@@ -529,6 +625,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/cloudflared/"
     schedule:
       interval: "weekly"
@@ -540,6 +638,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/couchdb/"
     schedule:
       interval: "weekly"
@@ -551,6 +651,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/dex-exporter/"
     schedule:
       interval: "weekly"
@@ -562,6 +664,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/dl-from-rss/"
     schedule:
       interval: "weekly"
@@ -573,6 +677,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/dockhand/"
     schedule:
       interval: "weekly"
@@ -584,6 +690,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/eavesdrop/"
     schedule:
       interval: "weekly"
@@ -595,6 +703,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/exporters/"
     schedule:
       interval: "weekly"
@@ -606,6 +716,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/fetch_ratio/"
     schedule:
       interval: "weekly"
@@ -617,6 +729,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/file_browser/"
     schedule:
       interval: "weekly"
@@ -628,6 +742,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/grafana-screenshot/"
     schedule:
       interval: "weekly"
@@ -639,6 +755,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/hawser/"
     schedule:
       interval: "weekly"
@@ -650,6 +768,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/homeflix-exporter/"
     schedule:
       interval: "weekly"
@@ -661,6 +781,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/immich/"
     schedule:
       interval: "weekly"
@@ -672,6 +794,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/invoice-qr/"
     schedule:
       interval: "weekly"
@@ -683,6 +807,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/kometa/"
     schedule:
       interval: "weekly"
@@ -694,6 +820,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/komoot-to-gpx-bot/"
     schedule:
       interval: "weekly"
@@ -705,6 +833,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/letterboxd-list-radarr/"
     schedule:
       interval: "weekly"
@@ -716,6 +846,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/loki/"
     schedule:
       interval: "weekly"
@@ -727,6 +859,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/maintainerr/"
     schedule:
       interval: "weekly"
@@ -738,6 +872,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/metube/"
     schedule:
       interval: "weekly"
@@ -749,6 +885,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/metube-podcast-feed/"
     schedule:
       interval: "weekly"
@@ -760,6 +898,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/navidrome/"
     schedule:
       interval: "weekly"
@@ -771,6 +911,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/nvidia-gpu-exporter/"
     schedule:
       interval: "weekly"
@@ -782,6 +924,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/ofelia/"
     schedule:
       interval: "weekly"
@@ -793,6 +937,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/orpheus-poll-to-playlist/"
     schedule:
       interval: "weekly"
@@ -804,6 +950,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/outline/"
     schedule:
       interval: "weekly"
@@ -815,6 +963,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/overseerr/"
     schedule:
       interval: "weekly"
@@ -826,6 +976,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/radarr-ru/"
     schedule:
       interval: "weekly"
@@ -837,6 +989,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/sonarr-ru/"
     schedule:
       interval: "weekly"
@@ -848,6 +1002,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/trek/"
     schedule:
       interval: "weekly"
@@ -859,6 +1015,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/volley-matches/"
     schedule:
       interval: "weekly"
@@ -870,6 +1028,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/wrapper-manager/"
     schedule:
       interval: "weekly"
@@ -881,6 +1041,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/amusic-web/"
     schedule:
       interval: "weekly"
@@ -892,6 +1054,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "docker"
+    assignees:
+      - "liamniou"
     directory: "/eva00/kometa/camoufox-proxy/"
     schedule:
       interval: "weekly"
@@ -903,6 +1067,8 @@ updates:
       - "dependencies"
       - "docker"
   - package-ecosystem: "pip"
+    assignees:
+      - "liamniou"
     directory: "/eva00/kometa/camoufox-proxy/"
     schedule:
       interval: "weekly"
@@ -913,6 +1079,8 @@ updates:
     labels:
       - "dependencies"
   - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva00/learn-swedish/"
     schedule:
       interval: "weekly"
