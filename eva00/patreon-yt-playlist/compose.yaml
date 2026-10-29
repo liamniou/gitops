@@ -1,0 +1,26 @@
+services:
+  patreon-yt-playlist:
+    mem_limit: 64m
+    image: python:3.13-alpine
+    container_name: patreon-yt-playlist
+    restart: unless-stopped
+    command: ["python", "-u", "/app/app.py"]
+    volumes:
+      - ./app.py:/app/app.py:ro
+      - /home/lestar/_volumes/patreon-yt-playlist/data:/data
+    # Secrets come from Vaultwarden item "patreon-yt-playlist" via doco-cd external_secrets:
+    #   PATREON_SESSION_ID: patreon.com `session_id` cookie (re-login when the container logs "LoginRequired")
+    #   YT_CLIENT_ID / YT_CLIENT_SECRET: Google OAuth Desktop client (GCP project my-blog-448220)
+    #   YT_REFRESH_TOKEN: from `docker exec -it patreon-yt-playlist python /app/app.py auth`
+    environment:
+      - TZ=Europe/Stockholm
+      - PATREON_SESSION_ID=${PATREON_SESSION_ID}
+      - YT_CLIENT_ID=${YT_CLIENT_ID}
+      - YT_CLIENT_SECRET=${YT_CLIENT_SECRET}
+      - YT_REFRESH_TOKEN=${YT_REFRESH_TOKEN}
+      - INTERVAL_MINUTES=720
+      - BACKFILL_DAYS=180
+      - LOOKBACK_DAYS=14
+      - PLAYLIST_TITLE=Patreon
+      - PLAYLIST_PRIVACY=unlisted
+      # Optional: PLAYLIST_ID (use an existing playlist), EXCLUDE_CAMPAIGN_IDS, EXTRA_CAMPAIGN_IDS, DISCORD_WEBHOOK_URL
