@@ -12,6 +12,7 @@ services:
     #   PATREON_SESSION_ID: item "patreon-yt-playlist" — initial cookie only; renewed ones live in /data/patreon_session.json
     #   YT_CLIENT_ID / YT_CLIENT_SECRET: item "patreon-yt-playlist" — Google OAuth Desktop client (GCP my-blog-448220)
     #   YT_REFRESH_TOKEN: item "patreon-yt-playlist" — from `docker exec -it patreon-yt-playlist python /app/app.py auth`
+    #   DISCORD_WEBHOOK_URL: item "patreon-yt-playlist" — added-video and auth-failure notifications
     environment:
       - TZ=Europe/Stockholm
       - PATREON_EMAIL=${PATREON_EMAIL}
@@ -20,10 +21,11 @@ services:
       - YT_CLIENT_ID=${YT_CLIENT_ID}
       - YT_CLIENT_SECRET=${YT_CLIENT_SECRET}
       - YT_REFRESH_TOKEN=${YT_REFRESH_TOKEN}
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
       - INTERVAL_MINUTES=720
       - BACKFILL_DAYS=180
       - LOOKBACK_DAYS=14
       - PLAYLIST_TITLE=Patreon
       - PLAYLIST_PRIVACY=unlisted
-      # Optional: PLAYLIST_ID (use an existing playlist), EXCLUDE_CAMPAIGN_IDS, EXTRA_CAMPAIGN_IDS, DISCORD_WEBHOOK_URL,
+      # Optional: PLAYLIST_ID (use an existing playlist), EXCLUDE_CAMPAIGN_IDS, EXTRA_CAMPAIGN_IDS,
       # LOGIN_COOLDOWN_MINUTES (min gap between automatic Patreon logins, default 360)
