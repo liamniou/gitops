@@ -1,4 +1,5 @@
-FROM python:3.15-slim-bookworm
+# Pinned to 3.14: some camoufox deps (orjson) have no cp315 wheels and slim has no compiler. See dependabot.yml ignore.
+FROM python:3.14-slim-bookworm
 
 # Firefox runtime libraries needed by Camoufox
 RUN apt-get update && \

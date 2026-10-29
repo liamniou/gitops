@@ -575,19 +575,6 @@ updates:
   - package-ecosystem: "docker-compose"
     assignees:
       - "liamniou"
-    directory: "/eva00/apprise/"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-    open-pull-requests-limit: 5
-    commit-message:
-      prefix: "deps(apprise)"
-    labels:
-      - "dependencies"
-      - "docker"
-  - package-ecosystem: "docker-compose"
-    assignees:
-      - "liamniou"
     directory: "/eva00/audiomuse-ai/"
     schedule:
       interval: "weekly"
@@ -1066,6 +1053,10 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+    ignore:
+      # camoufox deps (orjson etc.) lack cp315 wheels; slim image can't build them.
+      - dependency-name: "python"
+        versions: [">=3.15"]
   - package-ecosystem: "pip"
     assignees:
       - "liamniou"
