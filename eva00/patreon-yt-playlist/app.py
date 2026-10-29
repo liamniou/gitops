@@ -27,6 +27,7 @@ import urllib.request
 
 DATA_DIR = os.environ.get('DATA_DIR', '/data')
 INTERVAL_MINUTES = int(os.environ.get('INTERVAL_MINUTES', '720'))
+RETRY_MINUTES = int(os.environ.get('RETRY_MINUTES', '30'))
 BACKFILL_DAYS = int(os.environ.get('BACKFILL_DAYS', '180'))
 LOOKBACK_DAYS = int(os.environ.get('LOOKBACK_DAYS', '14'))
 PLAYLIST_ID = os.environ.get('PLAYLIST_ID', '').strip()
@@ -215,21 +216,30 @@ class YouTube:
         raise YouTubeError(f'{status} {reasons} {err.get("message") or str(resp)[:300]}')
 
     def ensure_playlist(self, conn):
+        """Returns (playlist_id, created_now)."""
         pid = PLAYLIST_ID or kv_get(conn, 'playlist_id')
         if pid:
-            return pid
+            return pid, False
         resp = self.call('POST', 'playlists', {'part': 'snippet,status'}, {
             'snippet': {'title': PLAYLIST_TITLE, 'description': 'Videos posted by Patreon creators (auto-collected)'},
             'status': {'privacyStatus': PLAYLIST_PRIVACY}})
         kv_set(conn, 'playlist_id', resp['id'])
         log.info('Created playlist %s https://www.youtube.com/playlist?list=%s', PLAYLIST_TITLE, resp['id'])
         notify(f'Created YouTube playlist **{PLAYLIST_TITLE}**: https://www.youtube.com/playlist?list={resp["id"]}')
-        return resp['id']
+        return resp['id'], True
 
     def playlist_video_ids(self, pid):
         ids, params = set(), {'part': 'contentDetails', 'playlistId': pid, 'maxResults': 50}
         while True:
-            resp = self.call('GET', 'playlistItems', params)
+            for attempt in range(4):
+                try:
+                    resp = self.call('GET', 'playlistItems', params)
+                    break
+                except YouTubeError as e:
+                    # A freshly created playlist can be briefly invisible to playlistItems.list.
+                    if 'playlistNotFound' not in str(e) or attempt == 3:
+                        raise
+                    time.sleep(15)
             ids.update(i['contentDetails']['videoId'] for i in resp.get('items', []))
             if not resp.get('nextPageToken'):
                 return ids
@@ -271,8 +281,8 @@ def sync(conn, yt):
         kv_set(conn, 'last_success', now_iso())
         return
 
-    pid = yt.ensure_playlist(conn)
-    existing = yt.playlist_video_ids(pid)
+    pid, created = yt.ensure_playlist(conn)
+    existing = set() if created else yt.playlist_video_ids(pid)
     added = []
     try:
         for vid, m in todo:
@@ -313,6 +323,7 @@ def run_forever():
     conn, yt = db(), YouTube()
     auth_alerted = False
     while True:
+        sleep_minutes = INTERVAL_MINUTES
         try:
             sync(conn, yt)
             auth_alerted = False
@@ -323,7 +334,9 @@ def run_forever():
                 auth_alerted = True
         except Exception:
             log.exception('Sync failed')
-        time.sleep(INTERVAL_MINUTES * 60)
+            sleep_minutes = min(INTERVAL_MINUTES, RETRY_MINUTES)
+        log.info('Next sync in %d min', sleep_minutes)
+        time.sleep(sleep_minutes * 60)
 
 
 # ---------------------------------------------------------------- one-off OAuth helper
