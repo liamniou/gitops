@@ -23,7 +23,7 @@ services:
   immich-machine-learning:
     mem_limit: 2048m # raised: was OOM-killed
     container_name: immich_machine_learning
-    image: ghcr.io/immich-app/immich-machine-learning:v3.3.3
+    image: ghcr.io/immich-app/immich-machine-learning:v3.3.5
     volumes:
       - /home/lestar/_volumes/immich/model-cache:/cache
     environment:
