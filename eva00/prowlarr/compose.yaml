@@ -17,7 +17,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Stockholm
-    image: lscr.io/linuxserver/prowlarr:2.6.5
+    image: lscr.io/linuxserver/prowlarr:2.7.0
     ports:
       - 9696:9696
     restart: unless-stopped
