@@ -6,7 +6,9 @@ Every INTERVAL_MINUTES:
   3. extract YouTube video IDs from the post embed/content and append unseen ones to the playlist (oldest first)
 
 Env:
-  PATREON_SESSION_ID   value of the patreon.com `session_id` cookie
+  PATREON_EMAIL / PATREON_PASSWORD   used to log in again when the session cookie expires; the renewed cookie is
+                       kept in DATA_DIR/patreon_session.json
+  PATREON_SESSION_ID   optional initial patreon.com `session_id` cookie (DATA_DIR/patreon_session.json wins)
   YT_CLIENT_ID / YT_CLIENT_SECRET / YT_REFRESH_TOKEN   Google OAuth "Desktop app" client + refresh token
                        (scope youtube); get the token with `python app.py auth`
   PLAYLIST_ID          optional; otherwise a playlist PLAYLIST_TITLE/PLAYLIST_PRIVACY is created once
@@ -37,6 +39,10 @@ EXTRA_CAMPAIGN_IDS = [c.strip() for c in os.environ.get('EXTRA_CAMPAIGN_IDS', ''
 EXCLUDE_CAMPAIGN_IDS = {c.strip() for c in os.environ.get('EXCLUDE_CAMPAIGN_IDS', '').split(',') if c.strip()}
 MAX_ATTEMPTS = int(os.environ.get('MAX_ATTEMPTS', '3'))
 DISCORD_WEBHOOK_URL = os.environ.get('DISCORD_WEBHOOK_URL', '').strip()
+PATREON_EMAIL = os.environ.get('PATREON_EMAIL', '').strip()
+PATREON_PASSWORD = os.environ.get('PATREON_PASSWORD', '')
+LOGIN_COOLDOWN_MINUTES = int(os.environ.get('LOGIN_COOLDOWN_MINUTES', '360'))
+SESSION_FILE = os.path.join(DATA_DIR, 'patreon_session.json')
 
 PATREON = 'https://www.patreon.com/api'
 UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36'
@@ -124,16 +130,84 @@ def now_iso():
 
 # ---------------------------------------------------------------- Patreon
 
-def patreon_get(path, params):
+def session_load():
+    try:
+        with open(SESSION_FILE) as f:
+            return json.load(f)
+    except (FileNotFoundError, ValueError):
+        return {}
+
+
+def session_save(state):
+    tmp = SESSION_FILE + '.tmp'
+    with open(tmp, 'w') as f:
+        json.dump(state, f)
+    os.chmod(tmp, 0o600)
+    os.replace(tmp, SESSION_FILE)
+
+
+def patreon_session_id():
+    return session_load().get('session_id') or os.environ.get('PATREON_SESSION_ID', '')
+
+
+def patreon_login():
+    """Logs in with PATREON_EMAIL/PATREON_PASSWORD and stores the new session_id in SESSION_FILE.
+
+    Plain urllib gets a Cloudflare block on /api/auth; curl_cffi's Chrome TLS fingerprint passes.
+    The patreon_device_id cookie is reused so Patreon sees a known device and skips email verification.
+    """
+    if not (PATREON_EMAIL and PATREON_PASSWORD):
+        raise AuthError('Patreon session expired and PATREON_EMAIL/PATREON_PASSWORD are not set')
+    state = session_load()
+    last = state.get('last_login_attempt', 0)
+    if time.time() - last < LOGIN_COOLDOWN_MINUTES * 60:
+        raise AuthError(f'Patreon session expired; last login attempt {int((time.time() - last) / 60)} min ago, '
+                        f'waiting for {LOGIN_COOLDOWN_MINUTES} min cooldown')
+    state['last_login_attempt'] = time.time()
+    session_save(state)
+
+    from curl_cffi import requests
+    s = requests.Session(impersonate='chrome')
+    if state.get('device_id'):
+        s.cookies.set('patreon_device_id', state['device_id'], domain='.patreon.com')
+    s.get('https://www.patreon.com/login', timeout=60)
+    body = {'data': {'type': 'genericPatreonApi', 'relationships': {}, 'attributes': {
+        'auth_context': 'auth',
+        'patreon_auth': {'email': PATREON_EMAIL, 'password': PATREON_PASSWORD, 'allow_account_creation': False}}}}
+    r = s.post(f'{PATREON}/auth?include=user.null&fields%5Buser%5D=%5B%5D&json-api-version=1.0'
+               '&json-api-use-default-includes=false', json=body, timeout=60,
+               headers={'Content-Type': 'application/vnd.api+json', 'Origin': 'https://www.patreon.com',
+                        'Referer': 'https://www.patreon.com/login'})
+    try:
+        attrs = r.json()['data']['attributes']
+    except (ValueError, KeyError, TypeError):
+        raise AuthError(f'Patreon login failed: HTTP {r.status_code} {r.text[:200]!r}')
+    step, sid = attrs.get('next_auth_step'), s.cookies.get('session_id')
+    if step != 'login_success' or not sid:
+        # e.g. device verification: Patreon emailed a link/code; a manual login is needed once.
+        raise AuthError(f'Patreon login did not complete (HTTP {r.status_code}, next_auth_step={step}); '
+                        'log in manually and update PATREON_SESSION_ID')
+    state.update(session_id=sid, device_id=s.cookies.get('patreon_device_id') or state.get('device_id'),
+                 renewed_at=now_iso())
+    session_save(state)
+    log.info('Patreon session renewed')
+
+
+def patreon_get(path, params, renew=True):
     url = f'{PATREON}/{path}?' + urllib.parse.urlencode({**params, 'json-api-version': '1.0'})
     headers = {'User-Agent': UA, 'Accept': 'application/vnd.api+json',
-               'Cookie': f'session_id={os.environ["PATREON_SESSION_ID"]}'}
+               'Cookie': f'session_id={patreon_session_id()}'}
     for attempt in range(4):
         status, resp = http('GET', url, headers=headers)
         if status == 200:
             return resp
         if status in (401, 403) and 'errors' in resp:
-            raise AuthError(f'Patreon {status}: {resp["errors"][0].get("title")} (session_id cookie expired?)')
+            title = resp['errors'][0].get('title')
+            if not renew:
+                raise AuthError(f'Patreon {status} right after login: {title}')
+            log.warning('Patreon %s (%s); renewing session', status, title)
+            patreon_login()
+            return patreon_get(path, params, renew=False)
         if status in (429, 500, 502, 503, 504) and attempt < 3:
             time.sleep(10 * (attempt + 1))
             continue

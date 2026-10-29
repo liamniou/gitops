@@ -1,19 +1,21 @@
 services:
   patreon-yt-playlist:
-    mem_limit: 64m
-    image: python:3.13-alpine
+    mem_limit: 96m
+    build: .
+    image: patreon-yt-playlist:local
     container_name: patreon-yt-playlist
     restart: unless-stopped
-    command: ["python", "-u", "/app/app.py"]
     volumes:
-      - ./app.py:/app/app.py:ro
       - /home/lestar/_volumes/patreon-yt-playlist/data:/data
-    # Secrets come from Vaultwarden item "patreon-yt-playlist" via doco-cd external_secrets:
-    #   PATREON_SESSION_ID: patreon.com `session_id` cookie (re-login when the container logs "LoginRequired")
-    #   YT_CLIENT_ID / YT_CLIENT_SECRET: Google OAuth Desktop client (GCP project my-blog-448220)
-    #   YT_REFRESH_TOKEN: from `docker exec -it patreon-yt-playlist python /app/app.py auth`
+    # Secrets come from Vaultwarden via doco-cd external_secrets:
+    #   PATREON_EMAIL / PATREON_PASSWORD: item "patreon.com" — used to renew the session automatically
+    #   PATREON_SESSION_ID: item "patreon-yt-playlist" — initial cookie only; renewed ones live in /data/patreon_session.json
+    #   YT_CLIENT_ID / YT_CLIENT_SECRET: item "patreon-yt-playlist" — Google OAuth Desktop client (GCP my-blog-448220)
+    #   YT_REFRESH_TOKEN: item "patreon-yt-playlist" — from `docker exec -it patreon-yt-playlist python /app/app.py auth`
     environment:
       - TZ=Europe/Stockholm
+      - PATREON_EMAIL=${PATREON_EMAIL}
+      - PATREON_PASSWORD=${PATREON_PASSWORD}
       - PATREON_SESSION_ID=${PATREON_SESSION_ID}
       - YT_CLIENT_ID=${YT_CLIENT_ID}
       - YT_CLIENT_SECRET=${YT_CLIENT_SECRET}
@@ -23,4 +25,5 @@ services:
       - LOOKBACK_DAYS=14
       - PLAYLIST_TITLE=Patreon
       - PLAYLIST_PRIVACY=unlisted
-      # Optional: PLAYLIST_ID (use an existing playlist), EXCLUDE_CAMPAIGN_IDS, EXTRA_CAMPAIGN_IDS, DISCORD_WEBHOOK_URL
+      # Optional: PLAYLIST_ID (use an existing playlist), EXCLUDE_CAMPAIGN_IDS, EXTRA_CAMPAIGN_IDS, DISCORD_WEBHOOK_URL,
+      # LOGIN_COOLDOWN_MINUTES (min gap between automatic Patreon logins, default 360)
