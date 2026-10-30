@@ -1,6 +1,6 @@
 services:
   crowbarr:
-    image: ghcr.io/amanofvaly/crowbarr:latest-cuda@sha256:84b9d98f6ff71c3c4042b571f089835b136873bcce01a60205bed4996fa6bfe1
+    image: ghcr.io/amanofvaly/crowbarr:latest-cuda@sha256:53dc3f864e334388657a7324d625f3e3c4198adf8d31b11e05dfaf4479ad297f
     container_name: crowbarr
     profiles: ["disabled"]  # was not running at migration time; remove to enable
     restart: unless-stopped
