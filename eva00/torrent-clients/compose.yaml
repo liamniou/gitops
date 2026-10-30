@@ -53,7 +53,7 @@ services:
 
   cross-seed:
     mem_limit: 288m # peak 14d +25%
-    image: ghcr.io/cross-seed/cross-seed:6.13.7
+    image: ghcr.io/cross-seed/cross-seed:6.13.9
     container_name: cross-seed
     # Must match qbit-9089 file ownership (PUID/PGID 1000) so hardlinks/injection work
     user: "1000:1000"
