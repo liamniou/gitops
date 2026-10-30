@@ -2,7 +2,7 @@ services:
   app:
     mem_limit: 592m # peak 14d +25%
     container_name: bookorbit-app
-    image: ghcr.io/bookorbit/bookorbit:3.4.0
+    image: ghcr.io/bookorbit/bookorbit:3.6.0
     restart: unless-stopped
     init: true
     ports:
