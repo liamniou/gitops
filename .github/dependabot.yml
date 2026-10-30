@@ -1004,19 +1004,6 @@ updates:
   - package-ecosystem: "docker-compose"
     assignees:
       - "liamniou"
-    directory: "/eva00/volley-matches/"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-    open-pull-requests-limit: 5
-    commit-message:
-      prefix: "deps(volley-matches)"
-    labels:
-      - "dependencies"
-      - "docker"
-  - package-ecosystem: "docker-compose"
-    assignees:
-      - "liamniou"
     directory: "/eva00/wrapper-manager/"
     schedule:
       interval: "weekly"
