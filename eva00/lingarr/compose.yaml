@@ -1,7 +1,7 @@
 services:
   lingarr:
     mem_limit: 288m # peak 14d +25%
-    image: ghcr.io/lingarr-translate/lingarr:1.3.0
+    image: ghcr.io/lingarr-translate/lingarr:1.4.1
     container_name: lingarr
     restart: unless-stopped
     environment:
