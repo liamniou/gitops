@@ -64,7 +64,7 @@ services:
 
   smartctl-exporter:
     mem_limit: 64m # peak 14d +25%
-    image: prometheuscommunity/smartctl-exporter:v0.14.0
+    image: prometheuscommunity/smartctl-exporter:v0.15.0
     container_name: smartctl-exporter
     restart: unless-stopped
     privileged: true
