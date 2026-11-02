@@ -1,7 +1,7 @@
 services:
   alloy:
     mem_limit: 1664m # peak 7d +20%
-    image: grafana/alloy:v1.21.2
+    image: grafana/alloy:v1.21.3
     container_name: alloy
     restart: unless-stopped
     command:
