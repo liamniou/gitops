@@ -5,7 +5,7 @@
 services:
   learn-swedish:
     # Built from github.com/liamniou/learn-swedish.
-    image: ghcr.io/liamniou/learn-swedish:2026.11.4.5@sha256:3f6b8431a67ba00b79fc2fc0694af6f07b7b27c0bd6ed1310b4c69d55e1efd24
+    image: ghcr.io/liamniou/learn-swedish:2026.11.4.6@sha256:efc51cf32eee4e64b65fc34e2ce102aa560b3f731a2609e79a4ef2a744bb6c41
     container_name: learn-swedish
     restart: unless-stopped
     mem_limit: 128m
