@@ -1069,3 +1069,16 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+  - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
+    directory: "/eva00/job-ops/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(job-ops)"
+    labels:
+      - "dependencies"
+      - "docker"

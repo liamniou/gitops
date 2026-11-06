@@ -1,0 +1,32 @@
+# JobOps: job board search, AI CV tailoring and application tracking.
+# Upstream: https://github.com/DaKheera47/job-ops
+# UI: http://192.168.0.237:3006  (LAN only; first visit runs onboarding and creates the admin account)
+# State (SQLite DB, PDFs, cookies): /home/lestar/_volumes/job-ops/data
+
+services:
+  job-ops:
+    image: ghcr.io/dakheera47/job-ops:v0.14.0@sha256:4e94e734b03030a6299b4562d9d52b21185d7e3b797342bb30926039dfc92ab1
+    container_name: job-ops
+    restart: unless-stopped
+    # Bundles Playwright Firefox + Camoufox scrapers; raise if OOM-killed during pipeline runs.
+    mem_limit: 3g
+    shm_size: 512m
+    ports:
+      - "3006:3001"
+    environment:
+      NODE_ENV: production
+      PORT: "3001"
+      TZ: Europe/Stockholm
+      PYTHON_PATH: /usr/bin/python3
+      CODEX_HOME: /app/codex-home
+    volumes:
+      - /home/lestar/_volumes/job-ops/data:/app/data
+      - /home/lestar/_volumes/job-ops/codex-home:/app/codex-home
+      # Tectonic LaTeX bundle cache; avoids re-downloading (and 429s) on every recreate.
+      - /home/lestar/_volumes/job-ops/tectonic-cache:/root/.cache/Tectonic
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
