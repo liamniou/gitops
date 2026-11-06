@@ -1,6 +1,6 @@
 # JobOps: job board search, AI CV tailoring and application tracking.
 # Upstream: https://github.com/DaKheera47/job-ops
-# UI: http://192.168.0.237:3006  (LAN only; first visit runs onboarding and creates the admin account)
+# UI: http://192.168.0.238:3006  (LAN only; first visit runs onboarding and creates the admin account)
 # State (SQLite DB, PDFs, cookies): /home/lestar/_volumes/job-ops/data
 
 services:
@@ -9,7 +9,7 @@ services:
     container_name: job-ops
     restart: unless-stopped
     # Bundles Playwright Firefox + Camoufox scrapers; raise if OOM-killed during pipeline runs.
-    mem_limit: 3g
+    mem_limit: 2g
     shm_size: 512m
     ports:
       - "3006:3001"

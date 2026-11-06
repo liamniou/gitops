@@ -1072,7 +1072,7 @@ updates:
   - package-ecosystem: "docker-compose"
     assignees:
       - "liamniou"
-    directory: "/eva00/job-ops/"
+    directory: "/eva01/job-ops/"
     schedule:
       interval: "weekly"
       day: "monday"
