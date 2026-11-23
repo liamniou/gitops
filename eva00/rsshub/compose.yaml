@@ -23,7 +23,7 @@ services:
   browserless:
     mem_limit: 608m # peak 14d +25%
     # browserless/chrome (v1) is unmaintained; v2 still accepts puppeteer at ws://browserless:3000.
-    image: ghcr.io/browserless/chromium:v2.63.1@sha256:a79e03601b98ca7dc69bb518e7ffec9bbc7e368cde9b28d793a0c81e3193c0bb
+    image: ghcr.io/browserless/chromium:v2.64.2@sha256:aaedd08b2182d561152b86d77b1411462def57f84f0356d5fe40406358996d2f
     restart: always
     ulimits:
       core:
