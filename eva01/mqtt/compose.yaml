@@ -1,7 +1,7 @@
 services:
   mqtt:
     mem_limit: 64m
-    image: eclipse-mosquitto:2.0.22
+    image: eclipse-mosquitto:2.0.23
     container_name: mqtt
     restart: unless-stopped
     ports:
