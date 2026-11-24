@@ -1,7 +1,7 @@
 # Hemnet Watch: archive of hemnet.se listings + per-user email alerts.
 # UI: http://192.168.0.238:8099  (LAN only; sign-in via emailed code/link)
 # Data: /home/lestar/_volumes/hemnet-watch/data (SQLite) on eva01
-# Images: eva00 (192.168.0.237) /home/lestar/_volumes/hemnet-watch/images via NFS
+# Images: eva00 (192.168.0.237) /5TB/hemnet-watch/images (= /media/hemnet-watch) via NFS
 # Secrets: Vaultwarden item hemnet-watch-eva01
 
 services:
@@ -28,14 +28,14 @@ services:
       SMTP_FROM: Hemnet Watch <hemnet@tokyo3.eu>
     volumes:
       - /home/lestar/_volumes/hemnet-watch/data:/data
-      - images:/data/images
+      - images-5tb:/data/images
     security_opt:
       - no-new-privileges:true
 
 volumes:
-  images:
+  images-5tb:
     driver: local
     driver_opts:
       type: nfs
       o: addr=192.168.0.237,nfsvers=4.2,rw,hard,noatime
-      device: ":/home/lestar/_volumes/hemnet-watch/images"
+      device: ":/5TB/hemnet-watch/images"
