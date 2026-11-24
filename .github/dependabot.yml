@@ -133,6 +133,19 @@ updates:
   - package-ecosystem: "docker-compose"
     assignees:
       - "liamniou"
+    directory: "/eva01/hemnet-watch/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(hemnet-watch)"
+    labels:
+      - "dependencies"
+      - "docker"
+  - package-ecosystem: "docker-compose"
+    assignees:
+      - "liamniou"
     directory: "/eva01/homeassistant/"
     schedule:
       interval: "weekly"
