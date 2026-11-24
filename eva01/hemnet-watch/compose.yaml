@@ -16,6 +16,7 @@ services:
     environment:
       TZ: Europe/Stockholm
       PUBLIC_URL: http://192.168.0.238:8099
+      SCAN_INTERVAL_MINUTES: "120"
       SECRET_KEY: ${SECRET_KEY}
       ADMIN_EMAILS: ${ADMIN_EMAILS}
       SMTP_HOST: in-v3.mailjet.com
