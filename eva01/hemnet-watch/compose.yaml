@@ -7,7 +7,7 @@
 services:
   hemnet-watch:
     # Built from github.com/liamniou/hemnet_parser_bot.
-    image: ghcr.io/liamniou/hemnet_parser_bot:2026.11.24.20@sha256:01cd46315ac28824289369e21a2eb297c1c9757cafd0932888ef3f5427391537
+    image: ghcr.io/liamniou/hemnet_parser_bot:2026.11.24.22@sha256:a83b54dad867ce61bedbfdc40c49a4159afc7c1e14200718fe76dacf4415a3fe
     container_name: hemnet-watch
     restart: unless-stopped
     mem_limit: 512m
