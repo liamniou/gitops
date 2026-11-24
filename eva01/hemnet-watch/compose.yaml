@@ -1,12 +1,12 @@
-# Hemnet Watch: archive of hemnet.se listings + per-user alerts (Telegram/email).
-# UI: http://192.168.0.238:8099  (LAN only; login via Telegram bot deep link)
+# Hemnet Watch: archive of hemnet.se listings + per-user email alerts.
+# UI: http://192.168.0.238:8099  (LAN only; sign-in via emailed code/link)
 # Data: /home/lestar/_volumes/hemnet-watch/data (SQLite + archived images)
 # Secrets: Vaultwarden item hemnet-watch-eva01
 
 services:
   hemnet-watch:
     # Built from github.com/liamniou/hemnet_parser_bot.
-    image: ghcr.io/liamniou/hemnet_parser_bot:2026.11.24.4@sha256:69f077461467a42bfe2091dbf8f4da690c76581e70591645480caeda69009f9f
+    image: ghcr.io/liamniou/hemnet_parser_bot:2026.11.24.6@sha256:576a3742f0308e8de871821efe5f3659d2ec3a6aed3823163f236c5e7658c0d9
     container_name: hemnet-watch
     restart: unless-stopped
     mem_limit: 512m
@@ -16,9 +16,8 @@ services:
     environment:
       TZ: Europe/Stockholm
       PUBLIC_URL: http://192.168.0.238:8099
-      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
       SECRET_KEY: ${SECRET_KEY}
-      ADMIN_TELEGRAM_IDS: ${ADMIN_TELEGRAM_IDS}
+      ADMIN_EMAILS: ${ADMIN_EMAILS}
       SMTP_HOST: in-v3.mailjet.com
       SMTP_PORT: "587"
       SMTP_SECURITY: starttls
